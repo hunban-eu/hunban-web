@@ -1,18 +1,81 @@
 @import "tailwindcss";
 
+/* HunBAN design system tokens (from the HunBAN design system, tokens.json).
+   Brand colours are fixed; surface and ink colours switch with the theme. */
 :root {
-  --background: #fafaf7;
-  --foreground: #14161a;
+  --navy: #2f414f;
+  --navy-deep: #243642;
+  --navy-ink: #1a2a35;
+  --teal: #4d6980;
+  --mist: #9eb8c8;
+  --fog: #edf2f5;
+  --yellow: #fbcf00;
+
+  --surface: #ffffff;
+  --surface-alt: #edf2f5;
+  --surface-brand: #2f414f;
+  --ink: #2f414f;
+  --ink-muted: #4d6980;
+  --on-brand: #ffffff;
+  --on-brand-muted: #9eb8c8;
+  --accent: #fbcf00;
+  --on-accent: #2f414f;
+  --line: #4d6980;
+  --line-subtle: #2f414f26;
+  --focus: #2f414f;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #121418;
-    --foreground: #ececea;
+    --surface: #1a2a35;
+    --surface-alt: #243642;
+    --ink: #ffffff;
+    --ink-muted: #9eb8c8;
+    --line: #9eb8c8;
+    --line-subtle: #3a5060;
+    --focus: #fbcf00;
   }
 }
 
+/* Make the tokens available as Tailwind classes, e.g. bg-surface-brand, text-ink-muted */
+@theme inline {
+  --color-navy: var(--navy);
+  --color-navy-deep: var(--navy-deep);
+  --color-navy-ink: var(--navy-ink);
+  --color-teal: var(--teal);
+  --color-mist: var(--mist);
+  --color-fog: var(--fog);
+  --color-yellow: var(--yellow);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-surface-brand: var(--surface-brand);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-on-brand: var(--on-brand);
+  --color-on-brand-muted: var(--on-brand-muted);
+  --color-accent: var(--accent);
+  --color-on-accent: var(--on-accent);
+  --color-line: var(--line);
+  --color-line-subtle: var(--line-subtle);
+
+  --font-sans: Poppins, Arial, Helvetica, sans-serif;
+  --font-display: "Bebas Neue", Poppins, Arial, sans-serif;
+
+  --radius-sm: 4px;
+  --radius-md: 8px;
+}
+
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--surface);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+/* Focus ring on every interactive element: 2px solid, 2px offset */
+:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+.on-brand :focus-visible {
+  outline-color: var(--yellow);
 }
