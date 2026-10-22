@@ -31,7 +31,7 @@ function toGeoJSON(orgs: MapOrganisation[]): GeoJSON.FeatureCollection<GeoJSON.P
     features: orgs.map((o) => ({
       type: "Feature",
       geometry: { type: "Point", coordinates: [o.longitude, o.latitude] },
-      properties: { id: o.id },
+      properties: { id: o.id, highlighted: o.is_highlighted },
     })),
   };
 }
@@ -143,7 +143,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         setFailed(false);
         m.resize(); // re-measure the box in case the layout settled after creation
 
-        // Regular entries cluster in dense areas; highlighted ones (HunBAN) never do.
+        // All entries share one source, so HunBAN merges into clusters like the rest.
+        // Inside a cluster it is just part of the navy count; alone it shows in yellow.
         m.addSource("orgs", {
           type: "geojson",
           data: toGeoJSON([]),
@@ -151,20 +152,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           clusterRadius: 44,
           clusterMaxZoom: 14,
         });
-        m.addSource("highlight", { type: "geojson", data: toGeoJSON([]) });
 
-        // HunBAN's pin is drawn first, so a cluster's number is never hidden under it.
-        m.addLayer({
-          id: "highlight-points",
-          type: "circle",
-          source: "highlight",
-          paint: {
-            "circle-color": YELLOW,
-            "circle-radius": 10,
-            "circle-stroke-color": NAVY,
-            "circle-stroke-width": 2,
-          },
-        });
         m.addLayer({
           id: "clusters",
           type: "circle",
@@ -195,10 +183,11 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           type: "circle",
           source: "orgs",
           filter: ["!", ["has", "point_count"]],
+          layout: { "circle-sort-key": ["case", ["get", "highlighted"], 1, 0] }, // HunBAN on top of nearby pins
           paint: {
-            "circle-color": NAVY,
-            "circle-radius": 8,
-            "circle-stroke-color": WHITE,
+            "circle-color": ["case", ["get", "highlighted"], YELLOW, NAVY],
+            "circle-radius": ["case", ["get", "highlighted"], 10, 8],
+            "circle-stroke-color": ["case", ["get", "highlighted"], NAVY, WHITE],
             "circle-stroke-width": 2,
           },
         });
@@ -213,11 +202,10 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           popup.setLngLat([lng, lat]).setDOMContent(popupContent(o)).addTo(m);
         };
         m.on("click", "points", openPopup);
-        m.on("click", "highlight-points", openPopup);
 
         // A click on empty map (no pin, no cluster) closes the card.
         m.on("click", (e) => {
-          const hit = m.queryRenderedFeatures(e.point, { layers: ["points", "highlight-points", "clusters"] });
+          const hit = m.queryRenderedFeatures(e.point, { layers: ["points", "clusters"] });
           if (!hit.length) popup.remove();
         });
 
@@ -230,7 +218,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           m.easeTo({ center: (f.geometry as GeoJSON.Point).coordinates as [number, number], zoom });
         });
 
-        for (const layer of ["points", "highlight-points", "clusters"]) {
+        for (const layer of ["points", "clusters"]) {
           m.on("mouseenter", layer, () => (m.getCanvas().style.cursor = "pointer"));
           m.on("mouseleave", layer, () => (m.getCanvas().style.cursor = ""));
         }
@@ -252,12 +240,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !loaded) return;
-    (map.getSource("orgs") as GeoJSONSource | undefined)?.setData(
-      toGeoJSON(visible.filter((o) => !o.is_highlighted)),
-    );
-    (map.getSource("highlight") as GeoJSONSource | undefined)?.setData(
-      toGeoJSON(visible.filter((o) => o.is_highlighted)),
-    );
+    (map.getSource("orgs") as GeoJSONSource | undefined)?.setData(toGeoJSON(visible));
   }, [visible, loaded]);
 
   const toggle = (slug: string) =>
