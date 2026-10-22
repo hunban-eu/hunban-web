@@ -71,6 +71,21 @@ body {
   font-family: var(--font-sans);
 }
 
+/* Ecosystem map popups (the popup sits on a white card in both themes) */
+.maplibregl-popup-content {
+  font-family: var(--font-sans);
+  color: #2f414f;
+  border-radius: 8px;
+  padding: 14px 16px;
+}
+.hb-popup-types { font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4d6980; }
+.hb-popup-name { margin-top: 2px; font-size: 16px; line-height: 22px; font-weight: 600; padding-right: 12px; }
+.hb-popup-desc { margin-top: 4px; font-size: 13px; line-height: 18px; color: #4d6980; }
+.hb-popup-city { margin-top: 6px; font-size: 13px; line-height: 18px; font-weight: 500; color: #4d6980; }
+.hb-popup-links { margin-top: 8px; display: flex; gap: 14px; font-size: 13px; font-weight: 600; }
+.hb-popup-links a { color: #2f414f; text-underline-offset: 4px; }
+.hb-popup-links a:hover { text-decoration: underline; }
+
 /* Focus ring on every interactive element: 2px solid, 2px offset */
 :focus-visible {
   outline: 2px solid var(--focus);

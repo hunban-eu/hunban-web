@@ -22,3 +22,6 @@ next-env.d.ts
 # system and logs
 .DS_Store
 npm-debug.log*
+
+# MapLibre worker files, copied from node_modules at build time
+/public/maplibre/
