@@ -78,7 +78,8 @@ body {
   border-radius: 8px;
   padding: 14px 16px;
 }
-.hb-popup-types { padding-right: 28px; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4d6980; }
+.hb-popup-types { display: flex; flex-wrap: wrap; align-items: center; gap: 0 8px; padding-right: 28px; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4d6980; }
+.hb-dot { display: inline-block; width: 6px; height: 6px; border-radius: 9999px; background: currentColor; }
 .hb-popup-name { margin-top: 2px; font-size: 16px; line-height: 22px; font-weight: 600; padding-right: 28px; }
 /* Close button: bigger, and the same 8px from the top and right edges */
 .maplibregl-popup .maplibregl-popup-close-button {
