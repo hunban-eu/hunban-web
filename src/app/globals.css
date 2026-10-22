@@ -96,7 +96,6 @@ body {
 }
 .maplibregl-popup .maplibregl-popup-close-button:hover { background: #edf2f5; }
 .hb-popup-desc { margin-top: 4px; font-size: 13px; line-height: 18px; color: #4d6980; }
-.hb-popup-city { margin-top: 6px; font-size: 13px; line-height: 18px; font-weight: 500; color: #4d6980; }
 .hb-popup-links { margin-top: 8px; display: flex; gap: 14px; font-size: 13px; font-weight: 600; }
 .hb-popup-links a { color: #2f414f; text-underline-offset: 4px; }
 .hb-popup-links a:hover { text-decoration: underline; }

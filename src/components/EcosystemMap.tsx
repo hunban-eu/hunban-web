@@ -58,12 +58,7 @@ function popupContent(o: MapOrganisation): HTMLElement {
     d.textContent = o.description;
     root.appendChild(d);
   }
-  if (o.city) {
-    const c = document.createElement("p");
-    c.className = "hb-popup-city";
-    c.textContent = o.city;
-    root.appendChild(c);
-  }
+  // No city here: the map itself already shows where the pin is.
 
   const links = document.createElement("p");
   links.className = "hb-popup-links";
