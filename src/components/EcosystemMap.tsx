@@ -286,13 +286,18 @@ export default function EcosystemMap({ organisations, labels }: Props) {
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
         {visible.map((o) => (
           <li key={o.id} className="rounded-md bg-surface-alt p-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
-              {o.labels.map((l) => l.name).join(" · ")}
+            <p className="flex flex-wrap items-center gap-x-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
+              <span>{o.labels.map((l) => l.name).join(" · ")}</span>
+              {o.city && (
+                <>
+                  <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-current" />
+                  <span>{o.city}</span>
+                </>
+              )}
             </p>
             <p className="mt-1 font-semibold">{o.name}</p>
             {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
             <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
-              {o.city && <span className="text-ink-muted">{o.city}</span>}
               {o.website_url && (
                 <a href={o.website_url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
                   Website ↗
