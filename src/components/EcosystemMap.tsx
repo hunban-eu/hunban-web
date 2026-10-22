@@ -126,7 +126,10 @@ export default function EcosystemMap({ organisations, labels }: Props) {
       mapRef.current = map;
       map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
 
-      const popup = new maplibregl.Popup({ closeButton: true, maxWidth: "280px", offset: 12 });
+      // closeOnClick is off: MapLibre's built-in "close on map click" fires right after
+      // a pin click and would close the card we just moved to the new pin. We close it
+      // ourselves below, only when the click lands on empty map.
+      const popup = new maplibregl.Popup({ closeButton: true, closeOnClick: false, maxWidth: "280px", offset: 12 });
 
       // Single tile or font errors are normal and harmless. Only if the map
       // hasn't loaded at all after 15 seconds (tile service down) do we say so.
@@ -211,6 +214,12 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         };
         m.on("click", "points", openPopup);
         m.on("click", "highlight-points", openPopup);
+
+        // A click on empty map (no pin, no cluster) closes the card.
+        m.on("click", (e) => {
+          const hit = m.queryRenderedFeatures(e.point, { layers: ["points", "highlight-points", "clusters"] });
+          if (!hit.length) popup.remove();
+        });
 
         // Clicking a cluster zooms in until it splits apart.
         m.on("click", "clusters", async (e) => {
