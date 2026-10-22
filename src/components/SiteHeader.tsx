@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { nav } from "@/lib/site";
+import NavLink from "@/components/NavLink";
 
 // Navy header with the white logo. On phones the links fold into a
 // "Menu" toggle built with <details>, so it works without JavaScript.
@@ -22,9 +23,7 @@ export default function SiteHeader() {
           <ul className="flex items-center gap-6 text-sm font-medium">
             {nav.map((item) => (
               <li key={item.href}>
-                <Link href={item.href} className="hover:text-yellow">
-                  {item.label}
-                </Link>
+                <NavLink href={item.href}>{item.label}</NavLink>
               </li>
             ))}
           </ul>
@@ -41,9 +40,9 @@ export default function SiteHeader() {
             <ul>
               {nav.map((item) => (
                 <li key={item.href}>
-                  <Link href={item.href} className="block rounded-sm px-3 py-2 hover:text-yellow">
+                  <NavLink href={item.href} className="block rounded-sm px-3 py-2">
                     {item.label}
-                  </Link>
+                  </NavLink>
                 </li>
               ))}
             </ul>

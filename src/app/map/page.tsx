@@ -18,8 +18,7 @@ export default async function MapPage() {
     <>
       <section className="on-brand bg-surface-brand text-on-brand">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-on-brand-muted">Ecosystem map</p>
-          <h1 className="mt-3 text-3xl font-bold tracking-[-0.01em] sm:text-5xl">
+          <h1 className="text-3xl font-bold tracking-[-0.01em] sm:text-5xl">
             The Hungarian startup ecosystem, <span className="text-yellow">mapped</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
