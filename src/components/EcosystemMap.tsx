@@ -44,15 +44,7 @@ function popupContent(o: MapOrganisation): HTMLElement {
 
   const types = document.createElement("p");
   types.className = "hb-popup-types";
-  o.labels.forEach((l, i) => {
-    if (i > 0) {
-      const dot = document.createElement("span");
-      dot.className = "hb-dot";
-      dot.setAttribute("aria-hidden", "true");
-      types.appendChild(dot);
-    }
-    types.appendChild(document.createTextNode(l.name));
-  });
+  types.textContent = o.labels.map((l) => l.name).join(" · ");
   root.appendChild(types);
 
   const name = document.createElement("p");
@@ -294,13 +286,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
       <ul className="mt-4 grid gap-3 sm:grid-cols-2">
         {visible.map((o) => (
           <li key={o.id} className="rounded-md bg-surface-alt p-5">
-            <p className="flex flex-wrap items-center gap-x-2 text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
-              {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].map((part, i) => (
-                <span key={part} className="inline-flex items-center gap-x-2">
-                  {i > 0 && <span aria-hidden="true" className="inline-block h-1.5 w-1.5 rounded-full bg-current" />}
-                  {part}
-                </span>
-              ))}
+            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
+              {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
             </p>
             <p className="mt-1 font-semibold">{o.name}</p>
             {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
