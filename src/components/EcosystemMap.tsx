@@ -149,7 +149,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           type: "geojson",
           data: toGeoJSON([]),
           cluster: true,
-          clusterRadius: 44,
+          clusterRadius: 25, // pins (~20px) merge only when about to touch
           clusterMaxZoom: 14,
         });
 
