@@ -267,11 +267,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
       </div>
 
       <p className="mt-3 text-[13px] leading-[18px] text-ink-muted" aria-live="polite">
-        Showing {visible.length} of {organisations.length} {organisations.length === 1 ? "entry" : "entries"}.
-        <span className="ml-3 inline-flex items-center gap-1.5">
-          <span aria-hidden="true" className="inline-block h-3 w-3 rounded-full border-2 border-navy bg-yellow" /> HunBAN
-        </span>
-      </p>
+        Showing {visible.length} of {organisations.length} {organisations.length === 1 ? "entry" : "entries"}.      </p>
 
       <div className="relative mt-4 overflow-hidden rounded-md bg-surface-alt">
         <div ref={containerRef} className="h-[65vh] min-h-[420px] w-full" aria-label="Map of the Hungarian startup ecosystem" role="region" />
