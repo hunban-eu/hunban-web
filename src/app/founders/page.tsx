@@ -48,6 +48,7 @@ const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
     q: "Who can apply?",
     a: "Early-stage startups with a real link to Hungary, for example:",
     list: [
+      "A fully Hungarian founding team, in Hungary or abroad",
       "At least one Hungarian co-founder, wherever you're building",
       "Foreign founders building in Hungary",
       "A Hungarian advisor on the team",
