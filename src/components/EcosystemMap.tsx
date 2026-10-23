@@ -220,7 +220,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           type: "geojson",
           data: toGeoJSON([]),
           cluster: true,
-          clusterRadius: 18, // pins (~16px) merge only when about to touch
+          clusterRadius: 14, // pins (~16px) merge only when about to touch
           clusterMaxZoom: MAX_ZOOM,
           // Each cluster remembers whether HunBAN is inside it, for the yellow ring.
           clusterProperties: { hasHighlight: ["any", ["get", "highlighted"]] },
