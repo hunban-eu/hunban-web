@@ -2,12 +2,14 @@ import Link from "next/link";
 import { nav } from "@/lib/site";
 import NavLink from "@/components/NavLink";
 import MobileMenu from "@/components/MobileMenu";
+import AutoHideHeader from "@/components/AutoHideHeader";
 
 // Navy header with the white logo. On phones the links fold into a
-// "Menu" toggle (see MobileMenu).
+// "Menu" toggle (see MobileMenu). It sticks to the top, hiding while you
+// scroll down and returning when you scroll up (see AutoHideHeader).
 export default function SiteHeader() {
   return (
-    <header className="on-brand bg-surface-brand text-on-brand">
+    <AutoHideHeader>
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-6 px-4 py-4 sm:px-8">
         <Link href="/" className="shrink-0" aria-label="HunBAN home">
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -32,6 +34,6 @@ export default function SiteHeader() {
 
         <MobileMenu />
       </div>
-    </header>
+    </AutoHideHeader>
   );
 }
