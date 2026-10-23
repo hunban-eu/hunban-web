@@ -59,7 +59,7 @@ export default function SiteFooter() {
       {/* Legal imprint */}
       <div className="border-t border-line-subtle">
         <div className="mx-auto max-w-6xl px-4 py-6 text-[13px] leading-[18px] sm:px-8">
-          <p className="flex flex-wrap gap-x-1">
+          <p className="flex flex-wrap gap-x-[0.35em]">
             {[
               legal.name,
               legal.seat && `Seat: ${legal.seat}`,
@@ -67,11 +67,12 @@ export default function SiteFooter() {
               legal.taxNumber && `Tax no. ${legal.taxNumber}`,
             ]
               .filter(Boolean)
-              .map((part, i) => (
+              .map((part, i, all) => (
                 // Each item stays on one line; only the gaps between items wrap.
+                // The dot sits at the end of an item, so a line never starts with one.
                 <span key={i} className="whitespace-nowrap">
-                  {i > 0 && " · "}
                   {part}
+                  {i < all.length - 1 && " ·"}
                 </span>
               ))}
           </p>
