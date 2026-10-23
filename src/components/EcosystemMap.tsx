@@ -36,6 +36,14 @@ function toGeoJSON(orgs: MapOrganisation[]): GeoJSON.FeatureCollection<GeoJSON.P
   };
 }
 
+// Small yellow dot after a highlighted organisation's name (HunBAN), matching its map pin.
+function highlightDot(): HTMLElement {
+  const d = document.createElement("span");
+  d.className = "hb-hl-dot";
+  d.setAttribute("aria-hidden", "true");
+  return d;
+}
+
 // Popup content is built with DOM methods (textContent), never raw HTML,
 // so text from the database can't inject anything into the page.
 function popupContent(o: MapOrganisation, back?: { label: string; onClick: () => void }): HTMLElement {
@@ -60,6 +68,7 @@ function popupContent(o: MapOrganisation, back?: { label: string; onClick: () =>
   const name = document.createElement("p");
   name.className = "hb-popup-name";
   name.textContent = o.name;
+  if (o.is_highlighted) name.appendChild(highlightDot());
   root.appendChild(name);
 
   if (o.description) {
@@ -107,6 +116,7 @@ function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => vo
     const name = document.createElement("span");
     name.className = "hb-list-name";
     name.textContent = o.name;
+    if (o.is_highlighted) name.appendChild(highlightDot());
     const types = document.createElement("span");
     types.className = "hb-list-types";
     types.textContent = o.labels.map((l) => l.name).join(" · ");
@@ -194,6 +204,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           cluster: true,
           clusterRadius: 25, // pins (~20px) merge only when about to touch
           clusterMaxZoom: MAX_ZOOM,
+          // Each cluster remembers whether HunBAN is inside it, for the yellow ring.
+          clusterProperties: { hasHighlight: ["any", ["get", "highlighted"]] },
         });
 
         m.addLayer({
@@ -204,8 +216,9 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           paint: {
             "circle-color": NAVY,
             "circle-radius": ["step", ["get", "point_count"], 16, 10, 20, 50, 26],
-            "circle-stroke-color": WHITE,
-            "circle-stroke-width": 2,
+            // Yellow ring = HunBAN is in this cluster; white ring otherwise.
+            "circle-stroke-color": ["case", ["get", "hasHighlight"], YELLOW, WHITE],
+            "circle-stroke-width": ["case", ["get", "hasHighlight"], 3, 2],
           },
         });
         m.addLayer({
@@ -354,7 +367,10 @@ export default function EcosystemMap({ organisations, labels }: Props) {
             <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
               {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
             </p>
-            <p className="mt-1 font-semibold">{o.name}</p>
+            <p className="mt-1 font-semibold">
+              {o.name}
+              {o.is_highlighted && <span aria-hidden="true" className="hb-hl-dot" />}
+            </p>
             {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
             <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
               {o.website_url && (
