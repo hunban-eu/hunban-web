@@ -84,8 +84,8 @@ export default function FoundersPage() {
             Meet the angels who can <span className="text-yellow">back you</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            HunBAN connects early-stage founders with Hungary&apos;s private and institutional investors. We give first:
-            introductions, feedback and a network that stays with you, not just a funding round.
+            HunBAN connects early-stage founders with Hungary&apos;s private and institutional investors. Introductions,
+            feedback and a network that lasts beyond the round.
           </p>
           <a href="#apply" className="mt-8 inline-block rounded-sm bg-accent px-5 py-3 font-semibold text-on-accent">
             Apply to pitch
