@@ -27,9 +27,8 @@ export const documents = [
 ];
 
 // Social profiles. Links with an empty href are not shown.
-// TODO(Adam): confirm the URLs.
 export const social = [
-  { label: "LinkedIn", href: "" },
-  { label: "Facebook", href: "" },
-  { label: "Luma calendar", href: "" },
+  { label: "LinkedIn", href: "https://www.linkedin.com/company/hunban/" },
+  { label: "Facebook", href: "" }, // TODO(Adam): add the URL, or delete this line
+  { label: "Luma calendar", href: "https://luma.com/hunban" },
 ];
