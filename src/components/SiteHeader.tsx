@@ -16,7 +16,7 @@ export default function SiteHeader() {
           <img
             src="/hunban-logo-white.svg"
             alt="HunBAN, Hungarian Business Angel Network"
-            width={147}
+            width={150}
             height={44}
             className="h-10 w-auto sm:h-11"
           />
