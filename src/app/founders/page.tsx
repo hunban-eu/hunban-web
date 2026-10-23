@@ -13,11 +13,11 @@ const APPLICATION_FORM = "https://forms.clickup.com/90121663928/f/2kxupxdr-952/K
 const helps = [
   {
     title: "Warm introductions",
-    text: "We match you with investors and experts based on what you are building and what they back, then introduce you personally. No cold lists.",
+    text: "If we see a fit, we introduce you personally to investors and experts who back what you're building.",
   },
   {
-    title: "A room full of angels",
-    text: "Selected startups pitch at Startup Arena, our pitch event, to HunBAN's investor members and the wider network.",
+    title: "A room of the right people",
+    text: "Selected startups pitch at Startup Arena to HunBAN's angels and investors, alongside founders and partners from the network.",
   },
   {
     title: "Honest feedback",
@@ -25,7 +25,7 @@ const helps = [
   },
   {
     title: "A network that stays",
-    text: "Pitch or not, you become part of the HunBAN network. When the right investor, mentor or partner turns up, we think of you.",
+    text: "Once you're in, you're in. We keep you in mind when the right investor, mentor or partner turns up.",
   },
 ];
 
@@ -73,7 +73,7 @@ export default function FoundersPage() {
       </section>
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-        <h2 className="text-[28px] font-semibold leading-9">How HunBAN helps</h2>
+        <h2 className="text-[28px] font-semibold leading-9">What selected startups get</h2>
         <ul className="mt-6 grid gap-4 sm:grid-cols-2">
           {helps.map((h) => (
             <li key={h.title} className="rounded-md bg-surface-alt p-6">
