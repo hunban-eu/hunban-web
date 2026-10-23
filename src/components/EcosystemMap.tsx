@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Map as MLMap, GeoJSONSource, MapMouseEvent, MapGeoJSONFeature, ExpressionSpecification } from "maplibre-gl";
+import type { Map as MLMap, GeoJSONSource, MapGeoJSONFeature, ExpressionSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { MapLabel, MapOrganisation } from "@/lib/organisations";
 
@@ -292,22 +292,39 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           },
         });
 
-        const openPopup = (e: MapMouseEvent & { features?: MapGeoJSONFeature[] }) => {
-          // A click on a cluster zooms in; don't also open the pin hidden beneath it.
-          if (m.queryRenderedFeatures(e.point, { layers: ["clusters"] }).length) return;
-          const f = e.features?.[0];
-          const o = f && placesRef.current.get(String(f.properties?.key))?.[0];
-          if (!f || !o) return;
-          const [lng, lat] = (f.geometry as GeoJSON.Point).coordinates as [number, number];
-          popup.setLngLat([lng, lat]).setDOMContent(popupContent(o)).addTo(m);
-        };
-        m.on("click", "points", openPopup);
-
-        // A click on empty map (no pin, no cluster) closes the card.
-        m.on("click", (e) => {
-          const hit = m.queryRenderedFeatures(e.point, { layers: ["points", "clusters"] });
-          if (!hit.length) popup.remove();
+        // Invisible tap zones, drawn on top of the visible pins: a fingertip is much
+        // bigger than a 16px pin. Single pins get a 32px zone; numbered circles a zone
+        // 8px wider than the circle. All clicks and the pointer cursor use these zones.
+        m.addLayer({
+          id: "points-hit",
+          type: "circle",
+          source: "orgs",
+          filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "count"], 1]],
+          paint: { "circle-radius": 16, "circle-opacity": 0 },
         });
+        m.addLayer({
+          id: "clusters-hit",
+          type: "circle",
+          source: "orgs",
+          filter: isGroup,
+          paint: { "circle-radius": ["step", groupSize, 16, 10, 19, 50, 23], "circle-opacity": 0 },
+        });
+        const HIT_LAYERS = ["points-hit", "clusters-hit"];
+
+        // Where tap zones overlap, take the pin or circle whose centre is closest to the tap.
+        const nearestHit = (point: { x: number; y: number }): MapGeoJSONFeature | undefined => {
+          let best: MapGeoJSONFeature | undefined;
+          let bestDist = Infinity;
+          for (const f of m.queryRenderedFeatures([point.x, point.y], { layers: HIT_LAYERS })) {
+            const c = m.project((f.geometry as GeoJSON.Point).coordinates as [number, number]);
+            const d = (c.x - point.x) ** 2 + (c.y - point.y) ** 2;
+            if (d < bestDist) {
+              bestDist = d;
+              best = f;
+            }
+          }
+          return best;
+        };
 
         // Show a list card for the given organisations at `center`.
         const openList = (orgs: MapOrganisation[], center: [number, number], sameAddress: boolean) => {
@@ -331,15 +348,26 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           popup.addTo(m);
         };
 
-        m.on("click", "clusters", async (e) => {
-          const f = e.features?.[0];
-          if (!f) return;
+        // One click handler for the whole map.
+        m.on("click", async (e) => {
+          const f = nearestHit(e.point);
+          // Empty map: close any open card.
+          if (!f) {
+            popup.remove();
+            return;
+          }
           const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+          const place = placesRef.current.get(String(f.properties?.key));
+
+          // A single pin: its card.
+          if (f.layer.id === "points-hit") {
+            if (place?.[0]) popup.setLngLat(center).setDOMContent(popupContent(place[0])).addTo(m);
+            return;
+          }
 
           // One address with several organisations: always the list.
           if (!f.properties?.cluster) {
-            const orgs = placesRef.current.get(String(f.properties?.key)) ?? [];
-            openList(orgs, center, true);
+            openList(place ?? [], center, true);
             return;
           }
 
@@ -358,10 +386,10 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           openList(orgs, center, false);
         });
 
-        for (const layer of ["points", "clusters"]) {
-          m.on("mouseenter", layer, () => (m.getCanvas().style.cursor = "pointer"));
-          m.on("mouseleave", layer, () => (m.getCanvas().style.cursor = ""));
-        }
+        // Pointer cursor anywhere inside a tap zone.
+        m.on("mousemove", (e) => {
+          m.getCanvas().style.cursor = nearestHit(e.point) ? "pointer" : "";
+        });
 
         setLoaded(true);
       });
