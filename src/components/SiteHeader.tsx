@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { nav } from "@/lib/site";
 import NavLink from "@/components/NavLink";
+import MobileMenu from "@/components/MobileMenu";
 
 // Navy header with the white logo. On phones the links fold into a
-// "Menu" toggle built with <details>, so it works without JavaScript.
+// "Menu" toggle (see MobileMenu).
 export default function SiteHeader() {
   return (
     <header className="on-brand bg-surface-brand text-on-brand">
@@ -29,25 +30,7 @@ export default function SiteHeader() {
           </ul>
         </nav>
 
-        <details className="relative md:hidden">
-          <summary className="cursor-pointer list-none rounded-sm border border-on-brand-muted px-3 py-1.5 text-sm font-medium">
-            Menu
-          </summary>
-          <nav
-            aria-label="Main"
-            className="absolute right-0 z-10 mt-2 w-56 rounded-md bg-navy-ink p-2"
-          >
-            <ul>
-              {nav.map((item) => (
-                <li key={item.href}>
-                  <NavLink href={item.href} className="block rounded-sm px-3 py-2">
-                    {item.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          </nav>
-        </details>
+        <MobileMenu />
       </div>
     </header>
   );
