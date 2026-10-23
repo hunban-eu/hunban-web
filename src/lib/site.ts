@@ -10,13 +10,13 @@ export const nav = [
 ];
 
 // Legal imprint, required on an organisation's site under Hungarian law.
-// TODO(Adam): fill in the registration and tax numbers before launch.
+// Source: HunBAN's internal "Tudnivalók" document (public registry data).
 export const legal = {
   name: "Magyar Üzleti Angyal Egyesület",
   englishName: "Hungarian Business Angel Network (HunBAN)",
-  seat: "", // registered seat (székhely), e.g. "1234 Budapest, ..."
-  registrationNumber: "", // nyilvántartási szám
-  taxNumber: "", // adószám
+  seat: "1132 Budapest, Váci út 16. Fsz. 12.", // székhely
+  registrationNumber: "01-02-0016487", // nyilvántartási szám
+  taxNumber: "18900950-2-41", // adószám
   email: "info@hunban.eu",
 };
 

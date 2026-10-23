@@ -59,13 +59,23 @@ export default function SiteFooter() {
       {/* Legal imprint */}
       <div className="border-t border-line-subtle">
         <div className="mx-auto max-w-6xl px-4 py-6 text-[13px] leading-[18px] sm:px-8">
-          <p>
-            {legal.name}
-            {legal.seat && <>, seat: {legal.seat}</>}
-            {legal.registrationNumber && <>, registration no. {legal.registrationNumber}</>}
-            {legal.taxNumber && <>, tax no. {legal.taxNumber}</>}
-            . Member of EBAN, the European Business Angels Network.
+          <p className="flex flex-wrap gap-x-1">
+            {[
+              legal.name,
+              legal.seat && `Seat: ${legal.seat}`,
+              legal.registrationNumber && `Registration no. ${legal.registrationNumber}`,
+              legal.taxNumber && `Tax no. ${legal.taxNumber}`,
+            ]
+              .filter(Boolean)
+              .map((part, i) => (
+                // Each item stays on one line; only the gaps between items wrap.
+                <span key={i} className="whitespace-nowrap">
+                  {i > 0 && " · "}
+                  {part}
+                </span>
+              ))}
           </p>
+          <p className="mt-1">Member of EBAN, the European Business Angels Network.</p>
           <p className="mt-1">© {new Date().getFullYear()} HunBAN</p>
         </div>
       </div>
