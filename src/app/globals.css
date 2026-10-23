@@ -100,8 +100,9 @@ body {
 .hb-popup-links a { color: #2f414f; text-underline-offset: 4px; }
 .hb-popup-links a:hover { text-decoration: underline; }
 
-/* Yellow dot after HunBAN's name, a small copy of its map pin */
-.hb-hl-dot { display: inline-block; width: 10px; height: 10px; margin-left: 6px; border-radius: 9999px; background: #fbcf00; border: 2px solid #2f414f; vertical-align: 0; }
+/* Yellow highlighter strip behind HunBAN's name (navy on yellow, ~7:1 contrast).
+   The negative margin keeps the name's text aligned with the other names. */
+.hb-hl { background: #fbcf00; color: #2f414f; padding: 1px 4px; margin: 0 -4px; border-radius: 2px; -webkit-box-decoration-break: clone; box-decoration-break: clone; }
 
 /* "Several here" list card and its back link */
 .hb-popup-list { margin-top: 6px; display: flex; flex-direction: column; }

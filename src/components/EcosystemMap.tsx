@@ -36,12 +36,13 @@ function toGeoJSON(orgs: MapOrganisation[]): GeoJSON.FeatureCollection<GeoJSON.P
   };
 }
 
-// Small yellow dot after a highlighted organisation's name (HunBAN), matching its map pin.
-function highlightDot(): HTMLElement {
-  const d = document.createElement("span");
-  d.className = "hb-hl-dot";
-  d.setAttribute("aria-hidden", "true");
-  return d;
+// An organisation's name; HunBAN's gets the yellow highlighter strip (navy on yellow).
+function nameNode(o: MapOrganisation): Node {
+  if (!o.is_highlighted) return document.createTextNode(o.name);
+  const span = document.createElement("span");
+  span.className = "hb-hl";
+  span.textContent = o.name;
+  return span;
 }
 
 // Popup content is built with DOM methods (textContent), never raw HTML,
@@ -67,8 +68,7 @@ function popupContent(o: MapOrganisation, back?: { label: string; onClick: () =>
 
   const name = document.createElement("p");
   name.className = "hb-popup-name";
-  name.textContent = o.name;
-  if (o.is_highlighted) name.appendChild(highlightDot());
+  name.appendChild(nameNode(o));
   root.appendChild(name);
 
   if (o.description) {
@@ -115,8 +115,7 @@ function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => vo
     b.type = "button";
     const name = document.createElement("span");
     name.className = "hb-list-name";
-    name.textContent = o.name;
-    if (o.is_highlighted) name.appendChild(highlightDot());
+    name.appendChild(nameNode(o));
     const types = document.createElement("span");
     types.className = "hb-list-types";
     types.textContent = o.labels.map((l) => l.name).join(" · ");
@@ -404,8 +403,7 @@ function OrgCard({ o }: { o: MapOrganisation }) {
         {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
       </p>
       <p className="mt-1 font-semibold">
-        {o.name}
-        {o.is_highlighted && <span aria-hidden="true" className="hb-hl-dot" />}
+        {o.is_highlighted ? <span className="hb-hl">{o.name}</span> : o.name}
       </p>
       {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
       <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
