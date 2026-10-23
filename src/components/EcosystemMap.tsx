@@ -259,6 +259,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           filter: isGroup,
           paint: {
             "circle-color": NAVY,
+            // Visible size of numbered circles. If you change these numbers, also update
+            // the matching tap zone in "clusters-hit" below (keep each one about 4 larger).
             "circle-radius": ["step", groupSize, 12, 10, 15, 50, 19],
             // Yellow ring = HunBAN is in this group; white ring otherwise.
             "circle-stroke-color": ["case", groupHasHighlight, YELLOW, WHITE],
@@ -286,6 +288,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           layout: { "circle-sort-key": ["case", ["get", "highlighted"], 1, 0] }, // HunBAN on top of nearby pins
           paint: {
             "circle-color": ["case", ["get", "highlighted"], YELLOW, NAVY],
+            // Visible size of single pins (HunBAN, everyone else). If you change these, check
+            // the tap zone in "points-hit" below stays clearly larger (now 16).
             "circle-radius": ["case", ["get", "highlighted"], 8, 6],
             "circle-stroke-color": ["case", ["get", "highlighted"], NAVY, WHITE],
             "circle-stroke-width": 2,
@@ -295,6 +299,8 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         // Invisible tap zones, drawn on top of the visible pins: a fingertip is much
         // bigger than a 16px pin. Single pins get a 32px zone; numbered circles a zone
         // 8px wider than the circle. All clicks and the pointer cursor use these zones.
+        // These sizes do NOT follow the visible sizes above automatically: when you
+        // change a pin or circle size, update the matching radius here too.
         m.addLayer({
           id: "points-hit",
           type: "circle",
