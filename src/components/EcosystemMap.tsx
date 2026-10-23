@@ -403,7 +403,7 @@ function OrgCard({ o }: { o: MapOrganisation }) {
         {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
       </p>
       <p className="mt-1 font-semibold">
-        {o.is_highlighted ? <span className="hb-hl">{o.name}</span> : o.name}
+        {o.name}
       </p>
       {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
       <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
