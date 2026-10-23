@@ -38,9 +38,19 @@ function toGeoJSON(orgs: MapOrganisation[]): GeoJSON.FeatureCollection<GeoJSON.P
 
 // Popup content is built with DOM methods (textContent), never raw HTML,
 // so text from the database can't inject anything into the page.
-function popupContent(o: MapOrganisation): HTMLElement {
+function popupContent(o: MapOrganisation, back?: { label: string; onClick: () => void }): HTMLElement {
   const root = document.createElement("div");
   root.className = "hb-popup";
+
+  // When opened from a "several here" list, offer a way back to that list.
+  if (back) {
+    const b = document.createElement("button");
+    b.type = "button";
+    b.className = "hb-popup-back";
+    b.textContent = `← ${back.label}`;
+    b.addEventListener("click", back.onClick);
+    root.appendChild(b);
+  }
 
   const types = document.createElement("p");
   types.className = "hb-popup-types";
@@ -77,6 +87,43 @@ function popupContent(o: MapOrganisation): HTMLElement {
   if (links.childElementCount) root.appendChild(links);
   return root;
 }
+
+// Card for a small cluster: a short list of names; clicking one shows its details.
+function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => void): HTMLElement {
+  const root = document.createElement("div");
+  root.className = "hb-popup";
+
+  const head = document.createElement("p");
+  head.className = "hb-popup-types";
+  head.textContent = `${orgs.length} organisations here`;
+  root.appendChild(head);
+
+  const ul = document.createElement("ul");
+  ul.className = "hb-popup-list";
+  for (const o of orgs) {
+    const li = document.createElement("li");
+    const b = document.createElement("button");
+    b.type = "button";
+    const name = document.createElement("span");
+    name.className = "hb-list-name";
+    name.textContent = o.name;
+    const types = document.createElement("span");
+    types.className = "hb-list-types";
+    types.textContent = o.labels.map((l) => l.name).join(" · ");
+    b.append(name, types);
+    b.addEventListener("click", () => onPick(o));
+    li.appendChild(b);
+    ul.appendChild(li);
+  }
+  root.appendChild(ul);
+  return root;
+}
+
+// Clusters this small open a list; bigger ones zoom in instead.
+const LIST_LIMIT = 8;
+// Deepest zoom. Clustering runs all the way down, so pins at the same address
+// (e.g. a coworking space) always stay one clickable circle instead of stacking.
+const MAX_ZOOM = 19;
 
 export default function EcosystemMap({ organisations, labels }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -115,6 +162,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         bounds: HUNGARY,
         fitBoundsOptions: { padding: 24 },
         maxBounds: MAX_BOUNDS,
+        maxZoom: MAX_ZOOM,
         cooperativeGestures: true, // page scrolls normally; two fingers / Ctrl+scroll moves the map
         attributionControl: { compact: true },
       });
@@ -145,7 +193,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           data: toGeoJSON([]),
           cluster: true,
           clusterRadius: 25, // pins (~20px) merge only when about to touch
-          clusterMaxZoom: 14,
+          clusterMaxZoom: MAX_ZOOM,
         });
 
         m.addLayer({
@@ -204,13 +252,34 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           if (!hit.length) popup.remove();
         });
 
-        // Clicking a cluster zooms in until it splits apart.
+        // Small clusters (up to LIST_LIMIT) open a list of names; bigger ones zoom in.
         m.on("click", "clusters", async (e) => {
           const f = e.features?.[0];
           if (!f) return;
           const source = m.getSource("orgs") as GeoJSONSource;
-          const zoom = await source.getClusterExpansionZoom(f.properties?.cluster_id as number);
-          m.easeTo({ center: (f.geometry as GeoJSON.Point).coordinates as [number, number], zoom });
+          const clusterId = f.properties?.cluster_id as number;
+          const count = f.properties?.point_count as number;
+          const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+
+          if (count > LIST_LIMIT) {
+            const zoom = await source.getClusterExpansionZoom(clusterId);
+            m.easeTo({ center, zoom });
+            return;
+          }
+
+          const leaves = await source.getClusterLeaves(clusterId, LIST_LIMIT, 0);
+          const orgs = leaves
+            .map((l) => byId.get(String(l.properties?.id)))
+            .filter((o): o is MapOrganisation => Boolean(o))
+            .sort((a, b) => a.name.localeCompare(b.name));
+
+          const showList = () => popup.setDOMContent(listContent(orgs, showOne));
+          const showOne = (o: MapOrganisation) =>
+            popup.setDOMContent(popupContent(o, { label: `All ${orgs.length} here`, onClick: showList }));
+
+          popup.setLngLat(center);
+          showList();
+          popup.addTo(m);
         });
 
         for (const layer of ["points", "clusters"]) {

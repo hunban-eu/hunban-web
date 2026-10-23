@@ -100,6 +100,16 @@ body {
 .hb-popup-links a { color: #2f414f; text-underline-offset: 4px; }
 .hb-popup-links a:hover { text-decoration: underline; }
 
+/* "Several here" list card and its back link */
+.hb-popup-list { margin-top: 6px; display: flex; flex-direction: column; }
+.hb-popup-list button { display: flex; flex-direction: column; width: 100%; text-align: left; padding: 8px 8px; margin: 0 -8px; width: calc(100% + 16px); border-radius: 4px; cursor: pointer; }
+.hb-popup-list button:hover { background: #edf2f5; }
+.hb-popup-list li + li { border-top: 1px solid #2f414f26; }
+.hb-list-name { font-size: 15px; line-height: 20px; font-weight: 600; color: #2f414f; }
+.hb-list-types { margin-top: 2px; font-size: 11px; line-height: 16px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4d6980; }
+.hb-popup-back { margin-bottom: 8px; font-size: 13px; font-weight: 600; color: #4d6980; cursor: pointer; }
+.hb-popup-back:hover { color: #2f414f; text-decoration: underline; text-underline-offset: 4px; }
+
 /* Focus ring on every interactive element: 2px solid, 2px offset */
 :focus-visible {
   outline: 2px solid var(--focus);
