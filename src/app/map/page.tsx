@@ -24,6 +24,13 @@ export default async function MapPage() {
           <p className="mt-4 max-w-2xl text-on-brand-muted">
             The players that make Hungary&apos;s startup ecosystem work, on one map. Curated by HunBAN.
           </p>
+          <p className="mt-2 max-w-2xl text-on-brand-muted">
+            Missing someone? Tell us at{" "}
+            <a href="mailto:info@hunban.eu" className="font-semibold text-on-brand underline underline-offset-4 hover:text-yellow">
+              info@hunban.eu
+            </a>
+            .
+          </p>
         </div>
       </section>
 
