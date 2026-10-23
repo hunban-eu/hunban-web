@@ -153,6 +153,24 @@ export default function EcosystemMap({ organisations, labels }: Props) {
     [organisations, selected],
   );
 
+  // The list under the map, grouped by type: sections in the database's sort_order
+  // (only types with entries; with a filter on, only the selected types), names A-Z
+  // by Hungarian rules. An entry with two types appears in both sections.
+  const sections = useMemo(() => {
+    const byName = (a: MapOrganisation, b: MapOrganisation) => a.name.localeCompare(b.name, "hu");
+    const shown = selected.size === 0 ? labels : labels.filter((l) => selected.has(l.slug));
+    const out = shown
+      .map((l) => ({
+        key: l.slug,
+        title: l.name,
+        orgs: visible.filter((o) => o.labels.some((x) => x.slug === l.slug)).sort(byName),
+      }))
+      .filter((sec) => sec.orgs.length > 0);
+    const unlabelled = visible.filter((o) => o.labels.length === 0).sort(byName);
+    if (selected.size === 0 && unlabelled.length) out.push({ key: "other", title: "Other", orgs: unlabelled });
+    return out;
+  }, [labels, visible, selected]);
+
   // Create the map once.
   useEffect(() => {
     let cancelled = false;
@@ -360,33 +378,47 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         )}
       </div>
 
-      <h2 className="mt-12 text-xl font-semibold">All entries</h2>
-      <ul className="mt-4 grid gap-3 sm:grid-cols-2">
-        {visible.map((o) => (
-          <li key={o.id} className="rounded-md bg-surface-alt p-5">
-            <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
-              {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
-            </p>
-            <p className="mt-1 font-semibold">
-              {o.name}
-              {o.is_highlighted && <span aria-hidden="true" className="hb-hl-dot" />}
-            </p>
-            {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
-            <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
-              {o.website_url && (
-                <a href={o.website_url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                  Website ↗
-                </a>
-              )}
-              {o.linkedin_url && (
-                <a href={o.linkedin_url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
-                  LinkedIn ↗
-                </a>
-              )}
-            </p>
-          </li>
-        ))}
-      </ul>
+      <h2 className="mt-14 text-[28px] font-semibold leading-9">All entries</h2>
+      {sections.map((sec) => (
+        <section key={sec.key} className="mt-8" aria-labelledby={`sec-${sec.key}`}>
+          <h3 id={`sec-${sec.key}`} className="text-xl font-semibold leading-7">
+            {sec.title} <span className="font-normal text-ink-muted">({sec.orgs.length})</span>
+          </h3>
+          <ul className="mt-3 grid gap-3 sm:grid-cols-2">
+            {sec.orgs.map((o) => (
+              <OrgCard key={o.id} o={o} />
+            ))}
+          </ul>
+        </section>
+      ))}
     </div>
+  );
+}
+
+// One organisation card in the list under the map.
+function OrgCard({ o }: { o: MapOrganisation }) {
+  return (
+    <li className="rounded-md bg-surface-alt p-5">
+      <p className="text-[11px] font-semibold uppercase tracking-[0.08em] text-ink-muted">
+        {[...o.labels.map((l) => l.name), ...(o.city ? [o.city] : [])].join(" · ")}
+      </p>
+      <p className="mt-1 font-semibold">
+        {o.name}
+        {o.is_highlighted && <span aria-hidden="true" className="hb-hl-dot" />}
+      </p>
+      {o.description && <p className="mt-1 text-sm text-ink-muted">{o.description}</p>}
+      <p className="mt-2 flex flex-wrap gap-x-4 text-[13px] font-medium">
+        {o.website_url && (
+          <a href={o.website_url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+            Website ↗
+          </a>
+        )}
+        {o.linkedin_url && (
+          <a href={o.linkedin_url} target="_blank" rel="noopener noreferrer" className="underline-offset-4 hover:underline">
+            LinkedIn ↗
+          </a>
+        )}
+      </p>
+    </li>
   );
 }
