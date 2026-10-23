@@ -220,7 +220,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           type: "geojson",
           data: toGeoJSON([]),
           cluster: true,
-          clusterRadius: 25, // pins (~20px) merge only when about to touch
+          clusterRadius: 18, // pins (~16px) merge only when about to touch
           clusterMaxZoom: MAX_ZOOM,
           // Each cluster remembers whether HunBAN is inside it, for the yellow ring.
           clusterProperties: { hasHighlight: ["any", ["get", "highlighted"]] },
@@ -233,7 +233,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           filter: ["has", "point_count"],
           paint: {
             "circle-color": NAVY,
-            "circle-radius": ["step", ["get", "point_count"], 16, 10, 20, 50, 26],
+            "circle-radius": ["step", ["get", "point_count"], 12, 10, 15, 50, 19],
             // Yellow ring = HunBAN is in this cluster; white ring otherwise.
             "circle-stroke-color": ["case", ["get", "hasHighlight"], YELLOW, WHITE],
             "circle-stroke-width": ["case", ["get", "hasHighlight"], 3, 2],
@@ -247,7 +247,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           layout: {
             "text-field": ["get", "point_count_abbreviated"],
             "text-font": ["Noto Sans Bold"],
-            "text-size": 13,
+            "text-size": 11,
             "text-allow-overlap": true,
           },
           paint: { "text-color": WHITE },
@@ -260,7 +260,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           layout: { "circle-sort-key": ["case", ["get", "highlighted"], 1, 0] }, // HunBAN on top of nearby pins
           paint: {
             "circle-color": ["case", ["get", "highlighted"], YELLOW, NAVY],
-            "circle-radius": ["case", ["get", "highlighted"], 10, 8],
+            "circle-radius": ["case", ["get", "highlighted"], 8, 6],
             "circle-stroke-color": ["case", ["get", "highlighted"], NAVY, WHITE],
             "circle-stroke-width": 2,
           },
