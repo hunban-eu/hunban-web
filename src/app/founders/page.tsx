@@ -31,7 +31,7 @@ const helps = [
 
 const steps = [
   { title: "Apply", text: "Tell us about your startup in the form below." },
-  { title: "We review", text: "We read every application and get back to you." },
+  { title: "We review", text: "We review every complete application and reply if it's a fit." },
   { title: "Pitch", text: "Selected startups pitch at Startup Arena to our investor members." },
   {
     title: "Follow-up",
@@ -39,18 +39,38 @@ const steps = [
   },
 ];
 
-const faq = [
+const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
   {
     q: "Does HunBAN invest in startups?",
     a: "HunBAN is not a fund. Our members are private and institutional investors who decide and invest individually. We bring you together.",
   },
   {
     q: "Who can apply?",
-    a: "Early-stage startups with a connection to Hungary: Hungarian founders at home or abroad, or teams building in Hungary.",
+    a: "Early-stage startups with a real link to Hungary, for example:",
+    list: [
+      "At least one Hungarian co-founder, wherever you're building",
+      "Foreign founders building in Hungary",
+      "A Hungarian advisor on the team",
+      "A team or office in Hungary",
+      "A Hungarian investor on your cap table or in your current round",
+      "An active presence in the Hungarian market",
+      "A base close enough to meet investors in Budapest, like Vienna, Bratislava or Belgrade",
+    ],
   },
   {
     q: "What if I'm not selected to pitch?",
-    a: "You still join the HunBAN network, and we keep looking for useful introductions. Many good connections happen outside the pitch room.",
+    a: "Not being selected is often a matter of timing, not quality. If there's a fit, we'll stay in touch and, where we can, connect you with mentors, founders or angels who can help. You're welcome to reapply to Startup Arena after a year, or sooner if you've made a major pivot.",
+  },
+  {
+    q: "What makes a strong application?",
+    a: "A complete application gets a reply. That means:",
+    list: [
+      "Written in English",
+      "Every field filled in, with your deck and materials attached",
+      "A clear connection to Hungary",
+      "Early stage",
+      "A real company, not just an idea",
+    ],
   },
 ];
 
@@ -105,7 +125,16 @@ export default function FoundersPage() {
           {faq.map((f) => (
             <div key={f.q} className="py-5">
               <dt className="text-xl font-semibold leading-7">{f.q}</dt>
-              <dd className="mt-2 text-ink-muted">{f.a}</dd>
+              <dd className="mt-2 text-ink-muted">
+                <p>{f.a}</p>
+                {f.list && (
+                  <ul className="mt-2 list-disc space-y-1 pl-5 marker:text-ink-muted">
+                    {f.list.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                )}
+              </dd>
             </div>
           ))}
         </dl>
