@@ -191,6 +191,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         fitBoundsOptions: { padding: 24 },
         maxBounds: MAX_BOUNDS,
         maxZoom: MAX_ZOOM,
+        fadeDuration: 0, // cluster numbers switch instantly instead of fading
         cooperativeGestures: true, // page scrolls normally; two fingers / Ctrl+scroll moves the map
         attributionControl: { compact: true },
       });
