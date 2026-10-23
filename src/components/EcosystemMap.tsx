@@ -130,7 +130,7 @@ function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => vo
 }
 
 // Clusters this small open a list; bigger ones zoom in instead.
-const LIST_LIMIT = 8;
+const LIST_LIMIT = 4;
 // Deepest zoom. Clustering runs all the way down, so pins at the same address
 // (e.g. a coworking space) always stay one clickable circle instead of stacking.
 const MAX_ZOOM = 19;
