@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { Map as MLMap, GeoJSONSource, MapMouseEvent, MapGeoJSONFeature } from "maplibre-gl";
+import type { Map as MLMap, GeoJSONSource, MapMouseEvent, MapGeoJSONFeature, ExpressionSpecification } from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 import type { MapLabel, MapOrganisation } from "@/lib/organisations";
 
@@ -25,16 +25,33 @@ const MAX_BOUNDS: [[number, number], [number, number]] = [
 
 type Props = { organisations: MapOrganisation[]; labels: MapLabel[] };
 
-function toGeoJSON(orgs: MapOrganisation[]): GeoJSON.FeatureCollection<GeoJSON.Point> {
+// Organisations with exactly the same coordinates share an address (e.g. a coworking
+// space or office). The map works with these "places": one pin per address.
+const placeKey = (o: MapOrganisation) => `${o.latitude},${o.longitude}`;
+
+function groupByPlace(orgs: MapOrganisation[]): Map<string, MapOrganisation[]> {
+  const places = new Map<string, MapOrganisation[]>();
+  for (const o of orgs) {
+    const k = placeKey(o);
+    places.set(k, [...(places.get(k) ?? []), o]);
+  }
+  return places;
+}
+
+function toGeoJSON(places: Map<string, MapOrganisation[]>): GeoJSON.FeatureCollection<GeoJSON.Point> {
   return {
     type: "FeatureCollection",
-    features: orgs.map((o) => ({
+    features: [...places.entries()].map(([key, orgs]) => ({
       type: "Feature",
-      geometry: { type: "Point", coordinates: [o.longitude, o.latitude] },
-      properties: { id: o.id, highlighted: o.is_highlighted },
+      geometry: { type: "Point", coordinates: [orgs[0].longitude, orgs[0].latitude] },
+      properties: { key, count: orgs.length, highlighted: orgs.some((o) => o.is_highlighted) },
     })),
   };
 }
+
+// The host of a shared address: the entry labelled "Coworking / office", if any.
+const HOST_SLUG = "coworking-space";
+const hostOf = (orgs: MapOrganisation[]) => orgs.find((o) => o.labels.some((l) => l.slug === HOST_SLUG));
 
 // An organisation's name; HunBAN's gets the yellow highlighter strip (navy on yellow).
 function nameNode(o: MapOrganisation): Node {
@@ -97,14 +114,15 @@ function popupContent(o: MapOrganisation, back?: { label: string; onClick: () =>
   return root;
 }
 
-// Card for a small cluster: a short list of names; clicking one shows its details.
-function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => void): HTMLElement {
+// Card for an address with several organisations: a short list of names;
+// clicking one shows its details.
+function listContent(orgs: MapOrganisation[], header: string, onPick: (o: MapOrganisation) => void): HTMLElement {
   const root = document.createElement("div");
   root.className = "hb-popup";
 
   const head = document.createElement("p");
   head.className = "hb-popup-types";
-  head.textContent = `${orgs.length} organisations here`;
+  head.textContent = header;
   root.appendChild(head);
 
   const ul = document.createElement("ul");
@@ -128,15 +146,14 @@ function listContent(orgs: MapOrganisation[], onPick: (o: MapOrganisation) => vo
   return root;
 }
 
-// Clusters this small open a list; bigger ones zoom in instead.
-const LIST_LIMIT = 4;
-// Deepest zoom. Clustering runs all the way down, so pins at the same address
-// (e.g. a coworking space) always stay one clickable circle instead of stacking.
+// Deepest zoom. Clustering runs all the way down, so nearby places never stack
+// on top of each other unclickably.
 const MAX_ZOOM = 19;
 
 export default function EcosystemMap({ organisations, labels }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const mapRef = useRef<MLMap | null>(null);
+  const placesRef = useRef<Map<string, MapOrganisation[]>>(new Map());
   const [loaded, setLoaded] = useState(false);
   const [failed, setFailed] = useState(false);
   const [selected, setSelected] = useState<Set<string>>(new Set());
@@ -218,34 +235,43 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         // Inside a cluster it is just part of the navy count; alone it shows in yellow.
         m.addSource("orgs", {
           type: "geojson",
-          data: toGeoJSON([]),
+          data: toGeoJSON(new Map()),
           cluster: true,
           clusterRadius: 14, // pins (~16px) merge only when about to touch
           clusterMaxZoom: MAX_ZOOM,
           // Each cluster remembers whether HunBAN is inside it, for the yellow ring.
-          clusterProperties: { hasHighlight: ["any", ["get", "highlighted"]] },
+          // and how many organisations (not places) it holds, for its number.
+          clusterProperties: {
+            hasHighlight: ["any", ["get", "highlighted"]],
+            orgCount: ["+", ["get", "count"]],
+          },
         });
 
+        // Numbered circles: clusters of nearby places, and single addresses with
+        // several organisations. Both look the same; a click zooms or lists.
+        const isGroup: ExpressionSpecification = ["any", ["has", "point_count"], [">", ["get", "count"], 1]];
+        const groupSize: ExpressionSpecification = ["coalesce", ["get", "orgCount"], ["get", "count"]];
+        const groupHasHighlight: ExpressionSpecification = ["coalesce", ["get", "hasHighlight"], ["get", "highlighted"]];
         m.addLayer({
           id: "clusters",
           type: "circle",
           source: "orgs",
-          filter: ["has", "point_count"],
+          filter: isGroup,
           paint: {
             "circle-color": NAVY,
-            "circle-radius": ["step", ["get", "point_count"], 12, 10, 15, 50, 19],
-            // Yellow ring = HunBAN is in this cluster; white ring otherwise.
-            "circle-stroke-color": ["case", ["get", "hasHighlight"], YELLOW, WHITE],
-            "circle-stroke-width": ["case", ["get", "hasHighlight"], 3, 2],
+            "circle-radius": ["step", groupSize, 12, 10, 15, 50, 19],
+            // Yellow ring = HunBAN is in this group; white ring otherwise.
+            "circle-stroke-color": ["case", groupHasHighlight, YELLOW, WHITE],
+            "circle-stroke-width": ["case", groupHasHighlight, 3, 2],
           },
         });
         m.addLayer({
           id: "cluster-count",
           type: "symbol",
           source: "orgs",
-          filter: ["has", "point_count"],
+          filter: isGroup,
           layout: {
-            "text-field": ["get", "point_count_abbreviated"],
+            "text-field": ["to-string", groupSize],
             "text-font": ["Noto Sans Bold"],
             "text-size": 11,
             "text-allow-overlap": true,
@@ -256,7 +282,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           id: "points",
           type: "circle",
           source: "orgs",
-          filter: ["!", ["has", "point_count"]],
+          filter: ["all", ["!", ["has", "point_count"]], ["==", ["get", "count"], 1]],
           layout: { "circle-sort-key": ["case", ["get", "highlighted"], 1, 0] }, // HunBAN on top of nearby pins
           paint: {
             "circle-color": ["case", ["get", "highlighted"], YELLOW, NAVY],
@@ -270,7 +296,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           // A click on a cluster zooms in; don't also open the pin hidden beneath it.
           if (m.queryRenderedFeatures(e.point, { layers: ["clusters"] }).length) return;
           const f = e.features?.[0];
-          const o = f && byId.get(String(f.properties?.id));
+          const o = f && placesRef.current.get(String(f.properties?.key))?.[0];
           if (!f || !o) return;
           const [lng, lat] = (f.geometry as GeoJSON.Point).coordinates as [number, number];
           popup.setLngLat([lng, lat]).setDOMContent(popupContent(o)).addTo(m);
@@ -283,34 +309,53 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           if (!hit.length) popup.remove();
         });
 
-        // Small clusters (up to LIST_LIMIT) open a list of names; bigger ones zoom in.
-        m.on("click", "clusters", async (e) => {
-          const f = e.features?.[0];
-          if (!f) return;
-          const source = m.getSource("orgs") as GeoJSONSource;
-          const clusterId = f.properties?.cluster_id as number;
-          const count = f.properties?.point_count as number;
-          const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+        // Show a list card for the given organisations at `center`.
+        const openList = (orgs: MapOrganisation[], center: [number, number], sameAddress: boolean) => {
+          const byName = (a: MapOrganisation, b: MapOrganisation) => a.name.localeCompare(b.name, "hu");
+          const host = sameAddress ? hostOf(orgs) : undefined;
+          // The host (coworking / office) first, then everyone else A-Z.
+          const sorted = host ? [host, ...orgs.filter((o) => o !== host).sort(byName)] : [...orgs].sort(byName);
+          const header = host
+            ? `At ${host.name}`
+            : sameAddress
+              ? `${orgs.length} organisations at this address`
+              : `${orgs.length} organisations close together`;
+          const back = host ? `All at ${host.name}` : `All ${orgs.length} here`;
 
-          if (count > LIST_LIMIT) {
-            const zoom = await source.getClusterExpansionZoom(clusterId);
-            m.easeTo({ center, zoom });
-            return;
-          }
-
-          const leaves = await source.getClusterLeaves(clusterId, LIST_LIMIT, 0);
-          const orgs = leaves
-            .map((l) => byId.get(String(l.properties?.id)))
-            .filter((o): o is MapOrganisation => Boolean(o))
-            .sort((a, b) => a.name.localeCompare(b.name));
-
-          const showList = () => popup.setDOMContent(listContent(orgs, showOne));
+          const showList = () => popup.setDOMContent(listContent(sorted, header, showOne));
           const showOne = (o: MapOrganisation) =>
-            popup.setDOMContent(popupContent(o, { label: `All ${orgs.length} here`, onClick: showList }));
+            popup.setDOMContent(popupContent(o, { label: back, onClick: showList }));
 
           popup.setLngLat(center);
           showList();
           popup.addTo(m);
+        };
+
+        m.on("click", "clusters", async (e) => {
+          const f = e.features?.[0];
+          if (!f) return;
+          const center = (f.geometry as GeoJSON.Point).coordinates as [number, number];
+
+          // One address with several organisations: always the list.
+          if (!f.properties?.cluster) {
+            const orgs = placesRef.current.get(String(f.properties?.key)) ?? [];
+            openList(orgs, center, true);
+            return;
+          }
+
+          // A cluster of different places: zoom in until they split...
+          const source = m.getSource("orgs") as GeoJSONSource;
+          const clusterId = f.properties?.cluster_id as number;
+          const zoom = await source.getClusterExpansionZoom(clusterId);
+          if (zoom <= MAX_ZOOM) {
+            m.easeTo({ center, zoom });
+            return;
+          }
+          // ...unless they are so close they can't split even at maximum zoom
+          // (e.g. slightly different coordinates for one building): then list them.
+          const leaves = await source.getClusterLeaves(clusterId, 1000, 0);
+          const orgs = leaves.flatMap((l) => placesRef.current.get(String(l.properties?.key)) ?? []);
+          openList(orgs, center, false);
         });
 
         for (const layer of ["points", "clusters"]) {
@@ -335,7 +380,9 @@ export default function EcosystemMap({ organisations, labels }: Props) {
   useEffect(() => {
     const map = mapRef.current;
     if (!map || !loaded) return;
-    (map.getSource("orgs") as GeoJSONSource | undefined)?.setData(toGeoJSON(visible));
+    const places = groupByPlace(visible);
+    placesRef.current = places;
+    (map.getSource("orgs") as GeoJSONSource | undefined)?.setData(toGeoJSON(places));
   }, [visible, loaded]);
 
   const toggle = (slug: string) =>
