@@ -459,6 +459,14 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         )}
       </div>
 
+      <p className="mt-3 text-sm text-ink-muted">
+        Missing someone? Tell us at{" "}
+        <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
+          info@hunban.eu
+        </a>
+        .
+      </p>
+
       <h2 className="mt-14 text-[28px] font-semibold leading-9">All entries</h2>
       {sections.map((sec) => (
         <section key={sec.key} className="mt-8" aria-labelledby={`sec-${sec.key}`}>

@@ -22,7 +22,7 @@ export default async function MapPage() {
             The Hungarian startup ecosystem, <span className="text-yellow">mapped</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            Investors, programmes, workspaces and communities. Filter by type, then click a pin for details.
+            The players that make Hungary&apos;s startup ecosystem work, on one map. Curated by HunBAN.
           </p>
         </div>
       </section>
