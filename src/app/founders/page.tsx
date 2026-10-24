@@ -4,7 +4,7 @@ import Script from "next/script";
 export const metadata: Metadata = {
   title: "For founders",
   description:
-    "Apply to pitch to HunBAN's angel investors. We give first: warm introductions, honest feedback and a network that stays with you.",
+    "Apply to pitch to HunBAN's angel investors. Introductions, feedback and a network that lasts beyond the round.",
 };
 
 // The startup application form in ClickUp; submissions land in the Startup Funnel.
