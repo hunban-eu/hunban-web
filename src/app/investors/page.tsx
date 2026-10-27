@@ -95,11 +95,9 @@ export default function InvestorsPage() {
             <h2 className="text-[28px] font-semibold leading-9">Why we exist</h2>
             <p className="mt-4 text-ink-muted">
               We believe every successful business leader and entrepreneur should invest their time, effort and
-              capital in the next generation of founders. That is how Hungary builds a knowledge-based economy.
-            </p>
-            <p className="mt-4 text-ink-muted">
-              HunBAN exists to make angel investing a natural part of that: for Hungarians at home, for international
-              investors living in Hungary, and for Hungarians abroad.
+              capital in the next generation of founders. HunBAN exists to enable that for Hungarians at home, for
+              foreigners living in Hungary, and for Hungarians abroad. We&apos;re turning angel investing from a rare
+              exception into a habit for Hungary&apos;s business community.
             </p>
           </div>
           <div>
