@@ -155,13 +155,15 @@ export default async function AboutPage() {
           <div>
             <h2 className={h2}>How we work</h2>
             <p className="mt-4 text-ink-muted">
-              We give first. We don&apos;t just facilitate investment, we help founders build success stories, by
-              connecting them with the people they need.
+              HunBAN doesn&apos;t manage a fund and doesn&apos;t make investment decisions. Our members invest
+              individually, on their own terms. What we do is give first: we connect founders with the people they
+              need, whether that&apos;s an expert, an advisor, a mentor or an investor, long before and long after any
+              round.
             </p>
             <p className="mt-4 text-ink-muted">
-              Think of us as a community-based, informal incubator: monthly Startup Arena pitch events, warm intros
-              based on detailed founder and investor profiles, and quarterly professional and club events for the
-              network.
+              We&apos;re a community of angels, founders and the people who help them succeed, run by a small team that
+              knows everyone in it. That&apos;s what makes our intros work: we know who&apos;s building what, who&apos;s
+              looking for what, and who would genuinely enjoy meeting whom.
             </p>
           </div>
         </div>
