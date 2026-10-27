@@ -12,7 +12,7 @@ const contacts = [
 
 export default function ContactCard({ id, intro }: { id?: string; intro: string }) {
   return (
-    <aside id={id} className="scroll-mt-24 rounded-md bg-surface-alt p-6 sm:p-8">
+    <aside id={id} className="scroll-mt-24 rounded-md bg-surface p-6 sm:p-8">
       <div className="flex items-center gap-4">
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -34,7 +34,7 @@ export default function ContactCard({ id, intro }: { id?: string; intro: string 
             <a
               href={c.href}
               {...(c.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-              className="inline-block rounded-sm border border-line bg-surface px-3 py-2 text-sm font-semibold text-ink hover:border-ink"
+              className="inline-block rounded-sm border border-line bg-surface-alt px-3 py-2 text-sm font-semibold text-ink hover:border-ink"
             >
               {c.label}
             </a>
