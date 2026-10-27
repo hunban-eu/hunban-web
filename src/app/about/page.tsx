@@ -143,13 +143,13 @@ export default async function AboutPage() {
           <div>
             <h2 className={h2}>Our story</h2>
             <p className="mt-4 text-ink-muted">
-              HunBAN was founded in 2017 and relaunched in 2026. We are a membership-based, nonprofit association of
-              angel investors in Budapest, and a member of EBAN, the European Business Angels Network.
+              HunBAN was founded in 2017 as a club of angels, and relaunched in 2026 with a bigger ambition: to become
+              the cornerstone of the Hungarian early-stage startup scene. We&apos;re a membership-based, nonprofit
+              association based in Budapest, and a member of EBAN, the European Business Angels Network.
             </p>
             <p className="mt-4 text-ink-muted">
               Our mission is to turn angel investing from a rare exception into a habit for Hungary&apos;s business
-              community, and to make HunBAN the cornerstone of the Hungarian startup scene. We work for Hungarians at
-              home, foreigners living in Hungary, and Hungarians abroad.
+              community. We work for Hungarians at home, foreigners living in Hungary, and Hungarians abroad.
             </p>
           </div>
           <div>
