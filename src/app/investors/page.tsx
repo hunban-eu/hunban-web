@@ -105,7 +105,7 @@ export default function InvestorsPage() {
       {/* 1. The calling */}
       <section className="on-brand bg-surface-brand text-on-brand">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
-          <h1 className="max-w-3xl text-3xl font-bold tracking-[-0.01em] sm:text-5xl sm:leading-[52px]">
+          <h1 className="text-balance text-3xl font-bold tracking-[-0.01em] sm:text-5xl sm:leading-[52px]">
             Help build Hungary&apos;s next <span className="text-yellow">success stories</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">

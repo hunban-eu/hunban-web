@@ -18,7 +18,7 @@ export default async function EventsPage() {
     <>
       <section className="on-brand bg-surface-brand text-on-brand">
         <div className="mx-auto max-w-6xl px-4 py-14 sm:px-8 sm:py-20">
-          <h1 className="text-3xl font-bold tracking-[-0.01em] sm:text-5xl">
+          <h1 className="text-balance text-3xl font-bold tracking-[-0.01em] sm:text-5xl sm:leading-[52px]">
             Where angels and founders <span className="text-yellow">meet</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
