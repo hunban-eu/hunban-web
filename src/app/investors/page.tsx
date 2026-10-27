@@ -66,8 +66,8 @@ export default function InvestorsPage() {
             Back the next generation of <span className="text-yellow">founders</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            HunBAN brings together angel investors in Hungary and across the Hungarian community abroad, to back
-            early-stage founders with time, experience and capital.
+            HunBAN brings together angel investors in Hungary and across the diaspora, to back early-stage founders
+            with time, experience and capital.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#apply" className="inline-block rounded-sm bg-accent px-5 py-3 font-semibold text-on-accent">
