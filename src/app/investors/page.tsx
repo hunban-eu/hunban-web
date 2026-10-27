@@ -90,19 +90,10 @@ const tiers = [
 ];
 
 const steps = [
-  {
-    title: "Get in touch",
-    text: "Use the form below, reach out to Adam, or tell any HunBAN member or board member.",
-  },
-  {
-    title: "Meet us",
-    text: "A call or a coffee with our team. We get to know each other and check that our values, vision and community fit you.",
-  },
-  { title: "Board approval", text: "Our board reviews and approves new members." },
-  {
-    title: "Welcome on board",
-    text: "Once your membership fee and contribution arrive, you're in. Membership runs for 12 months, then you renew or step out.",
-  },
+  { title: "Get in touch", text: "Fill in the form below, reach out to Adam, or ask any HunBAN member to introduce you." },
+  { title: "Meet us", text: "Over a call or a coffee, we get to know you and check that our values and vision match." },
+  { title: "Board approval", text: "Our board reviews every application and decides at one of its regular meetings." },
+  { title: "Welcome on board", text: "Once your fee and contribution arrive, you're in for 12 months, then renew or step out." },
 ];
 
 const h2 = "text-[28px] font-semibold leading-9";
