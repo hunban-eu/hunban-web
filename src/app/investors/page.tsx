@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Script from "next/script";
 import Link from "next/link";
+import ContactCard from "@/components/ContactCard";
 
 export const metadata: Metadata = {
   title: "For investors",
@@ -15,6 +16,10 @@ const access = [
   {
     title: "The open network",
     tag: "Get a taste",
+    links: [
+      { label: "Express your interest", href: "#apply" },
+      { label: "See upcoming events", href: "/events" },
+    ],
     items: [
       "Startup Arena pitch events",
       "A founder intro now and then, when we see a fit",
@@ -24,6 +29,7 @@ const access = [
   {
     title: "Association members",
     tag: "Step inside",
+    links: [{ label: "Express your interest", href: "#apply" }],
     items: [
       "Full involvement with the startups we work with, before and after every pitch",
       "Club events and internal meetings",
@@ -44,7 +50,7 @@ const tiers = [
 const steps = [
   {
     title: "Get in touch",
-    text: "Apply with the form below, or tell any HunBAN member, board member or our team that you're interested.",
+    text: "Express your interest with the form below, or tell any HunBAN member, board member or our team.",
   },
   {
     title: "Meet us",
@@ -71,7 +77,7 @@ export default function InvestorsPage() {
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#apply" className="inline-block rounded-sm bg-accent px-5 py-3 font-semibold text-on-accent">
-              Apply for membership
+              Express your interest
             </a>
             <a
               href="#first"
@@ -131,6 +137,19 @@ export default function InvestorsPage() {
                     <li key={item}>{item}</li>
                   ))}
                 </ul>
+                <div className="mt-4 flex flex-wrap gap-x-5 gap-y-1 text-sm font-semibold">
+                  {a.links.map((l) =>
+                    l.href.startsWith("/") ? (
+                      <Link key={l.label} href={l.href} className="text-ink underline underline-offset-4">
+                        {l.label}
+                      </Link>
+                    ) : (
+                      <a key={l.label} href={l.href} className="text-ink underline underline-offset-4">
+                        {l.label}
+                      </a>
+                    ),
+                  )}
+                </div>
               </div>
             ))}
           </div>
@@ -184,17 +203,18 @@ export default function InvestorsPage() {
           <Link href="/events" className="text-ink underline underline-offset-4">
             See upcoming events
           </Link>
-          <a href="mailto:info@hunban.eu" className="text-ink underline underline-offset-4">
-            Write to info@hunban.eu
+          <a href="#contact" className="text-ink underline underline-offset-4">
+            Reach out to Adam
           </a>
         </div>
       </section>
 
       <section id="apply" className="scroll-mt-4 bg-surface-alt">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-          <h2 className="text-[28px] font-semibold leading-9">Apply for membership</h2>
-          <p className="mt-2 text-ink-muted">
-            Tell us a bit about yourself and we&apos;ll get in touch. Prefer a full page?{" "}
+          <h2 className="text-[28px] font-semibold leading-9">Express your interest</h2>
+          <p className="mt-2 max-w-3xl text-ink-muted">
+            Whether you want to join the association or just get to know the network, start here. We&apos;ll get in
+            touch and figure out the right fit together. Prefer a full page?{" "}
             <a
               href={MEMBERSHIP_FORM}
               target="_blank"
@@ -204,14 +224,20 @@ export default function InvestorsPage() {
               Open the form in a new tab ↗
             </a>
           </p>
-          {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
-          <iframe
-            title="HunBAN investor membership form"
-            src={MEMBERSHIP_FORM}
-            className="clickup-embed clickup-dynamic-height mt-6 w-full rounded-md border border-line-subtle bg-white"
-            style={{ minHeight: 900 }}
-            loading="lazy"
-          />
+          {/* Two equal ways in: the form, or Adam directly. On phones the card comes first. */}
+          <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_320px]">
+            {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
+            <iframe
+              title="HunBAN investor interest form"
+              src={MEMBERSHIP_FORM}
+              className="clickup-embed clickup-dynamic-height w-full rounded-md border border-line-subtle bg-white"
+              style={{ minHeight: 900 }}
+              loading="lazy"
+            />
+            <div className="order-first lg:sticky lg:top-28 lg:order-none">
+              <ContactCard id="contact" />
+            </div>
+          </div>
           <Script src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js" strategy="lazyOnload" />
         </div>
       </section>
