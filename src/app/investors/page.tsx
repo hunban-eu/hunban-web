@@ -177,18 +177,16 @@ export default function InvestorsPage() {
         <p className="mt-4 max-w-2xl text-ink-muted">
           Talk to our team about what we do. Come to our events, meet the founders and angels in the network, and find
           a mentor in the community. Take your time to see whether angel investing, the HunBAN way, is for you. When
-          you see the value we create, we&apos;d love you to back it.
+          you see the value we create, we&apos;d love you to back it. Questions? Write to Adam, he&apos;ll get back to you
+          quickly.
         </p>
         <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
           <Link href="/events" className="text-ink underline underline-offset-4">
             See upcoming events
           </Link>
-          <span>
-            <a href="mailto:info@hunban.eu" className="text-ink underline underline-offset-4">
-              Write to us at info@hunban.eu
-            </a>{" "}
-            <span className="font-normal text-ink-muted">where Adam will get back to you ASAP</span>
-          </span>
+          <a href="mailto:info@hunban.eu" className="text-ink underline underline-offset-4">
+            Write to info@hunban.eu
+          </a>
         </div>
       </section>
 
