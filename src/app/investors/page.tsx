@@ -95,24 +95,26 @@ export default function InvestorsPage() {
             <h2 className="text-[28px] font-semibold leading-9">Why we exist</h2>
             <p className="mt-4 text-ink-muted">
               We believe every successful business leader and entrepreneur should invest their time, effort and
-              capital in the next generation of founders. HunBAN exists to enable that for Hungarians at home, for
-              foreigners living in Hungary, and for Hungarians abroad. We&apos;re turning angel investing from a rare
-              exception into a habit for Hungary&apos;s business community.
+              capital in the next generation of founders.
+            </p>
+            <p className="mt-4 text-ink-muted">
+              HunBAN exists to enable that for Hungarians at home, for foreigners living in Hungary, and for Hungarians
+              abroad. We&apos;re turning angel investing from a rare exception into a habit for Hungary&apos;s business
+              community.
             </p>
           </div>
           <div>
-            <h2 className="text-[28px] font-semibold leading-9">Membership isn&apos;t a purchase</h2>
+            <h2 className="text-[28px] font-semibold leading-9">What it actually looks like</h2>
             <p className="mt-4 text-ink-muted">
-              HunBAN is an open network, actively run by our team. We connect founders with investors, mentors and
-              partners, and we give first, long before anyone pays us anything.
+              Every month, founders pitch at Startup Arena and investors ask the hard questions, and the best
+              conversations carry on long after the event. In between, we make warm intros based on detailed founder
+              and investor profiles, so every connection makes sense for both sides. Once a quarter, we bring the
+              network together for professional sessions and informal club evenings.
             </p>
             <p className="mt-4 text-ink-muted">
-              The association is what keeps that work going. Members don&apos;t buy a service, they back a mission:
-              making HunBAN the cornerstone of the Hungarian startup scene.{" "}
-              <strong className="font-semibold text-ink">
-                If you invest in Hungarian startups, membership is the baseline. You contribute, we get things done,
-                and the whole ecosystem gains.
-              </strong>
+              We don&apos;t stop at funding. We help founders find the people they need to turn a promising start into
+              a real success story, and our investors get to be part of that journey from the very beginning. All of
+              this is open to the network, and our members are the ones who make it possible.
             </p>
           </div>
         </div>
