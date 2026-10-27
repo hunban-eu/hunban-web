@@ -195,7 +195,7 @@ export default function InvestorsPage() {
       <section id="apply" className="scroll-mt-4 bg-surface-alt">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className="text-[28px] font-semibold leading-9">Apply for membership</h2>
-          <p className="mt-2 max-w-2xl text-ink-muted">
+          <p className="mt-2 text-ink-muted">
             Tell us a bit about yourself and we&apos;ll get in touch. Prefer a full page?{" "}
             <a
               href={MEMBERSHIP_FORM}
