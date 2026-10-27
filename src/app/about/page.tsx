@@ -156,7 +156,7 @@ export default async function AboutPage() {
             <h2 className={h2}>How we work</h2>
             <p className="mt-4 text-ink-muted">
               HunBAN doesn&apos;t manage a fund and doesn&apos;t make investment decisions. Our members invest
-              individually, on their own terms and their own judgement. Our job is different: we help founders build
+              individually, on their own terms and their own judgement. Our job is to connect: we help founders build
               success stories by connecting them with the people they need, whether that&apos;s an expert, an advisor, a
               mentor or an investor.
             </p>
