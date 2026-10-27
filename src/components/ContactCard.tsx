@@ -1,7 +1,7 @@
 // A personal way in next to the forms: Adam's face and direct contacts,
 // so HunBAN reads as people who answer, not a generic inbox.
 // Photo lives in the public "images" bucket of our Supabase storage.
-const PHOTO = "https://cnxdwkqgydlivbrokoim.supabase.co/storage/v1/object/public/images/Adam_Brandisz.jpeg";
+const PHOTO = "https://cnxdwkqgydlivbrokoim.supabase.co/storage/v1/object/public/images/Adam_Brandisz_portrait.jpeg";
 
 const contacts = [
   { label: "info@hunban.eu", href: "mailto:info@hunban.eu" },

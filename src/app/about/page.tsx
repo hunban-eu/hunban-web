@@ -38,7 +38,7 @@ const team = [
   {
     name: "Ádám Brándisz",
     role: "Community & Operations Manager",
-    photo: `${IMG}/Adam_Brandisz.jpeg`,
+    photo: `${IMG}/Adam_Brandisz_portrait.jpeg`,
     linkedin: "https://www.linkedin.com/in/adam-brandisz",
   },
 ];
