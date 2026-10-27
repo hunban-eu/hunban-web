@@ -14,7 +14,7 @@ const MEMBERSHIP_FORM = "https://forms.clickup.com/90121663928/f/2kxupxdr-1252/O
 const access = [
   {
     title: "The open network",
-    tag: "A taste",
+    tag: "Get a taste",
     items: [
       "Startup Arena pitch events",
       "A founder intro now and then, when we see a fit",
@@ -23,7 +23,7 @@ const access = [
   },
   {
     title: "Association members",
-    tag: "Inside",
+    tag: "Step inside",
     items: [
       "Full involvement with the startups we work with, before and after every pitch",
       "Club events and internal meetings",
