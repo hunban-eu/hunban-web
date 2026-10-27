@@ -192,20 +192,33 @@ export default function InvestorsPage() {
       </section>
 
       <section id="first" className="scroll-mt-4 mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-        <h2 className="text-[28px] font-semibold leading-9">Not ready yet? Get to know us first</h2>
-        <p className="mt-4 max-w-2xl text-ink-muted">
-          Talk to our team about what we do. Come to our events, meet the founders and angels in the network, and find
-          a mentor in the community. Take your time to see whether angel investing, the HunBAN way, is for you. When
-          you see the value we create, we&apos;d love you to back it. Questions? Write to Adam, he&apos;ll get back to you
-          quickly.
-        </p>
-        <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
-          <Link href="/events" className="text-ink underline underline-offset-4">
-            See upcoming events
-          </Link>
-          <a href="#contact" className="text-ink underline underline-offset-4">
-            Reach out to Adam
-          </a>
+        <div className="grid items-center gap-10 lg:grid-cols-[1fr_400px]">
+          <div>
+            <h2 className="text-[28px] font-semibold leading-9">Not ready yet? Get to know us first</h2>
+            <p className="mt-4 max-w-2xl text-ink-muted">
+              There&apos;s no rush, and no form needed. Come to our events, meet the founders and angels in the
+              network, and find a mentor in the community. Take your time to see whether angel investing, the HunBAN
+              way, is for you. When you see the value we create, we&apos;d love you to back it.
+            </p>
+            <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 font-semibold">
+              <Link href="/events" className="text-ink underline underline-offset-4">
+                See upcoming events
+              </Link>
+              <a
+                href="https://luma.com/hunban"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-ink underline underline-offset-4"
+              >
+                Follow our Luma calendar ↗
+              </a>
+            </div>
+          </div>
+          {/* The human way in: Adam's face and direct contacts, so HunBAN reads as people who answer. */}
+          <ContactCard
+            id="contact"
+            intro="Curious, but not ready for a form? Reach out to me directly. I'm happy to tell you what we do and who's in the network, over a coffee or a call."
+          />
         </div>
       </section>
 
@@ -224,20 +237,14 @@ export default function InvestorsPage() {
               Open the form in a new tab ↗
             </a>
           </p>
-          {/* Two equal ways in: the form, or Adam directly. On phones the card comes first. */}
-          <div className="mt-6 grid items-start gap-6 lg:grid-cols-[1fr_320px]">
-            {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
-            <iframe
-              title="HunBAN investor interest form"
-              src={MEMBERSHIP_FORM}
-              className="clickup-embed clickup-dynamic-height w-full rounded-md border border-line-subtle bg-white"
-              style={{ minHeight: 900 }}
-              loading="lazy"
-            />
-            <div className="order-first lg:sticky lg:top-28 lg:order-none">
-              <ContactCard id="contact" />
-            </div>
-          </div>
+          {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
+          <iframe
+            title="HunBAN investor interest form"
+            src={MEMBERSHIP_FORM}
+            className="clickup-embed clickup-dynamic-height mt-6 w-full rounded-md border border-line-subtle bg-white"
+            style={{ minHeight: 900 }}
+            loading="lazy"
+          />
           <Script src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js" strategy="lazyOnload" />
         </div>
       </section>
