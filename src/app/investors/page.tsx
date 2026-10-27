@@ -106,15 +106,15 @@ export default function InvestorsPage() {
           <div>
             <h2 className="text-[28px] font-semibold leading-9">What it actually looks like</h2>
             <p className="mt-4 text-ink-muted">
-              Every month, founders pitch at Startup Arena and investors ask the hard questions, and the best
-              conversations carry on long after the event. In between, we make warm intros based on detailed founder
-              and investor profiles, so every connection makes sense for both sides. Once a quarter, we bring the
-              network together for professional sessions and informal club evenings.
+              Every month, founders pitch at Startup Arena, investors ask the hard questions, and the best
+              conversations carry on after the event. In between, we make warm intros based on detailed founder and
+              investor profiles. Once a quarter, the network meets for professional sessions and informal club
+              evenings.
             </p>
             <p className="mt-4 text-ink-muted">
-              We don&apos;t stop at funding. We help founders find the people they need to turn a promising start into
-              a real success story, and our investors get to be part of that journey from the very beginning. All of
-              this is open to the network, and our members are the ones who make it possible.
+              We don&apos;t stop at funding. We help founders find the people they need to build a real success story,
+              and our investors are part of that from the start. It&apos;s all an open network, and our members make it
+              possible.
             </p>
           </div>
         </div>
