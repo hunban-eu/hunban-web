@@ -36,7 +36,7 @@ const access = [
 // Big numbers are the level our plans are built on, in thousand HUF per year.
 // The fee is 100k for everyone; the rest is a suggested, voluntary contribution.
 const tiers = [
-  { name: "Community member", amount: 100, for: "For angels not investing right now, or just getting started." },
+  { name: "Community member", amount: 100, for: "For angels not investing right now." },
   { name: "Professional member", amount: 200, for: "For angels who are actively investing." },
   { name: "Institutional member", amount: 400, for: "For VCs, incubators and accelerators." },
 ];
