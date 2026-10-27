@@ -183,9 +183,12 @@ export default function InvestorsPage() {
           <Link href="/events" className="text-ink underline underline-offset-4">
             See upcoming events
           </Link>
-          <a href="mailto:info@hunban.eu" className="text-ink underline underline-offset-4">
-            Write to us at info@hunban.eu
-          </a>
+          <span>
+            <a href="mailto:info@hunban.eu" className="text-ink underline underline-offset-4">
+              Write to us at info@hunban.eu
+            </a>{" "}
+            <span className="font-normal text-ink-muted">where Adam will get back to you ASAP</span>
+          </span>
         </div>
       </section>
 
