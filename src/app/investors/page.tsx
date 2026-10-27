@@ -139,7 +139,7 @@ export default function InvestorsPage() {
 
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className="text-[28px] font-semibold leading-9">Membership</h2>
-        <p className="mt-2 max-w-2xl text-ink-muted">Three ways to join, each for 12 months.</p>
+        <p className="mt-2 max-w-2xl text-ink-muted">Three ways to join.</p>
         <ul className="mt-6 grid gap-4 md:grid-cols-3">
           {tiers.map((t) => (
             <li key={t.name} className="flex flex-col rounded-md border border-line-subtle p-6">
