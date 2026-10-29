@@ -223,7 +223,7 @@ export default async function FoundersPage() {
                           href={f.linkedin_url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="mt-1 inline-block text-sm font-semibold text-ink underline underline-offset-4"
+                          className="mt-1 inline-block text-sm text-ink-muted underline underline-offset-4 hover:text-ink"
                         >
                           LinkedIn ↗
                         </a>
