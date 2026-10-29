@@ -106,7 +106,7 @@ function Person({
             href={linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-1 inline-block text-sm text-ink-muted underline underline-offset-4 hover:text-ink"
+            className="link-reveal mt-1 inline-block pb-0.5 text-sm text-ink-muted hover:text-ink"
           >
             LinkedIn ↗
           </a>

@@ -122,3 +122,21 @@ body {
 .on-brand :focus-visible {
   outline-color: var(--yellow);
 }
+
+/* Link whose underline draws in from left to right on hover (and keyboard focus).
+   Used for the LinkedIn links on people cards. The ↗ keeps it recognisable as a link. */
+.link-reveal {
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  transition: background-size 250ms ease-out, color 150ms ease-out;
+}
+.link-reveal:hover,
+.link-reveal:focus-visible {
+  background-size: 100% 1px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .link-reveal { transition: none; }
+}
