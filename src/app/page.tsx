@@ -113,8 +113,7 @@ export default async function Home() {
       {/* 1. The claim and two doors */}
       <section className="on-brand bg-surface-brand text-on-brand">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
-          <p className={`${eyebrow} text-on-brand-muted`}>Hungarian Business Angel Network</p>
-          <h1 className="mt-4 max-w-3xl text-balance text-4xl font-bold leading-tight tracking-[-0.01em] sm:text-5xl sm:leading-[56px]">
+          <h1 className="max-w-3xl text-balance text-4xl font-bold leading-tight tracking-[-0.01em] sm:text-5xl sm:leading-[56px]">
             The home of angel investing in <span className="text-yellow">Hungary</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-on-brand-muted">
