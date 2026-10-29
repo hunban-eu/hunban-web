@@ -18,8 +18,20 @@ export type NetworkMember = {
   institution: string | null;
   // "angel" = own angel membership, listed under Our members.
   // "institutional" = represents `institution`, listed under Institutional members.
-  membership: "angel" | "institutional";
+  // "ambassador" = HunBAN Ambassador: not a member, listed under Our members, never counted.
+  membership: "angel" | "institutional" | "ambassador";
+  // Angel tier: "community member" or "actively investing" (shown as Professional Member).
+  role: "community member" | "actively investing" | null;
 };
+
+// The line shown under a person's name in Our members.
+export function tierLabel(m: Pick<NetworkMember, "membership" | "role">): string | null {
+  if (m.membership === "ambassador") return "HunBAN Ambassador";
+  if (m.membership !== "angel") return null;
+  if (m.role === "actively investing") return "Professional Member";
+  if (m.role === "community member") return "Community Member";
+  return null;
+}
 
 export type NetworkInstitution = {
   id: string;
@@ -48,7 +60,7 @@ export async function getNetwork(): Promise<NetworkData> {
     supabase.rpc("network_counts").single<{ angels: number; institutions: number }>(),
     supabase
       .from("members")
-      .select("id, full_name, photo_url, linkedin_url, position, membership, institutions(name)")
+      .select("id, full_name, photo_url, linkedin_url, position, membership, role, institutions(name)")
       .eq("is_published", true)
       .eq("consent_given", true)
       .returns<MemberRow[]>(),

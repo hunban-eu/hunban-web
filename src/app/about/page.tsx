@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getNetwork } from "@/lib/network";
+import { getNetwork, tierLabel } from "@/lib/network";
 
 export const metadata: Metadata = {
   title: "About",
@@ -73,11 +73,13 @@ function initials(name: string) {
 
 function Person({
   name,
+  tier,
   role,
   photo,
   linkedin,
 }: {
   name: string;
+  tier?: string | null;
   role: string | null;
   photo: string | null;
   linkedin: string | null;
@@ -97,7 +99,10 @@ function Person({
       )}
       <div>
         <p className="font-semibold leading-6">{name}</p>
-        {role && <p className="text-sm text-ink-muted">{role}</p>}
+        {tier && (
+          <p className="text-[11px] font-semibold uppercase leading-4 tracking-[0.08em] text-ink-muted">{tier}</p>
+        )}
+        {role && <p className={`text-sm text-ink-muted ${tier ? "mt-1" : ""}`}>{role}</p>}
         {linkedin && (
           <a
             href={linkedin}
@@ -115,8 +120,12 @@ function Person({
 
 export default async function AboutPage() {
   const { counts, members, institutions } = await getNetwork();
-  // Angels under "Our members"; institutional representatives under the institutions.
-  const angels = members.filter((m) => m.membership === "angel");
+  // Angels and ambassadors under "Our members" (ambassadors after the members);
+  // institutional representatives under the institutions.
+  const angels = [
+    ...members.filter((m) => m.membership === "angel"),
+    ...members.filter((m) => m.membership === "ambassador"),
+  ];
   // Representatives follow the order of the institution logos above them;
   // two people from the same institution stay in name order.
   const logoOrder = (name: string | null) => {
@@ -248,6 +257,7 @@ export default async function AboutPage() {
               <Person
                 key={m.id}
                 name={m.full_name}
+                tier={tierLabel(m)}
                 role={[m.position, m.institution].filter(Boolean).join(", ") || null}
                 photo={m.photo_url}
                 linkedin={m.linkedin_url}
