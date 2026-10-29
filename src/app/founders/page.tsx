@@ -218,6 +218,16 @@ export default async function FoundersPage() {
                         {[f.position, f.startup_name].filter(Boolean).join(", ")}
                       </p>
                       {f.year && <p className="text-sm text-ink-muted">Backed in {f.year}</p>}
+                      {f.linkedin_url && (
+                        <a
+                          href={f.linkedin_url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="mt-1 inline-block text-sm font-semibold text-ink underline underline-offset-4"
+                        >
+                          LinkedIn ↗
+                        </a>
+                      )}
                     </div>
                   </li>
                 ))}
