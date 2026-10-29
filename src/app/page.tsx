@@ -114,7 +114,7 @@ export default async function Home() {
       <section className="on-brand bg-surface-brand text-on-brand">
         <div className="mx-auto max-w-6xl px-4 py-16 sm:px-8 sm:py-24">
           <h1 className="max-w-3xl text-balance text-4xl font-bold leading-tight tracking-[-0.01em] sm:text-5xl sm:leading-[56px]">
-            The home of angel investing in <span className="text-yellow">Hungary</span>.
+            The home of angel investing in <span className="text-yellow">Hungary</span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-on-brand-muted">
             A trusted circle of angels at the centre, a curated network of founders, investors and enablers around it. We
