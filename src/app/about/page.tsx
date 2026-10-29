@@ -43,6 +43,23 @@ const team = [
   },
 ];
 
+// Who's in the HunBAN Network. It's by invitation: people can reach out,
+// and we invite them in once we've got to know each other.
+const networkGroups = [
+  {
+    title: "Partners",
+    text: "Companies, organisations, experts and service providers we work with and have invited in.",
+  },
+  {
+    title: "Founders we've helped",
+    text: "Founders who pitched at Startup Arena, whose story we shared with our investors, or whom we connected to the right people.",
+  },
+  {
+    title: "Investors we've got to know",
+    text: "Angels and institutional investors we've met and trust, many of them on their way to joining the association.",
+  },
+];
+
 const h2 = "text-[28px] font-semibold leading-9";
 
 function initials(name: string) {
@@ -166,6 +183,26 @@ export default async function AboutPage() {
               looking for what, and who would genuinely enjoy meeting whom.
             </p>
           </div>
+        </div>
+
+        <div id="network" className="mt-12 scroll-mt-24 sm:mt-16">
+          <h2 className={h2}>Our network</h2>
+          <p className="mt-4 max-w-3xl text-ink-muted">
+            Around the association is the HunBAN Network: the people we know, trust and keep
+            connecting.
+          </p>
+          <ul className="mt-8 grid gap-8 md:grid-cols-3">
+            {networkGroups.map((g) => (
+              <li key={g.title} className="border-t-4 border-yellow pt-5">
+                <h3 className="text-xl font-semibold leading-7">{g.title}</h3>
+                <p className="mt-2 text-ink-muted">{g.text}</p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-8 max-w-3xl text-ink">
+            There&apos;s no sign-up. Reach out any time, and once we&apos;ve got to know each other, we&apos;ll invite
+            you in.
+          </p>
         </div>
       </section>
 
