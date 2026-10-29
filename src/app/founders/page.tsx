@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
+import { getBackedFounders } from "@/lib/backed";
 
 export const metadata: Metadata = {
   title: "For founders",
@@ -75,7 +76,22 @@ const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
   },
 ];
 
-export default function FoundersPage() {
+// Backed founders and their counter come from the database; refresh at most every 5 minutes.
+export const revalidate = 300;
+
+function initials(name: string) {
+  return name
+    .split(/\s+/)
+    .filter((w) => /^\p{Lu}/u.test(w))
+    .slice(0, 2)
+    .map((w) => w[0])
+    .join("");
+}
+
+export default async function FoundersPage() {
+  const { founders: backed, startups } = await getBackedFounders();
+  const showBacked = backed.length > 0 || (startups ?? 0) > 0;
+
   return (
     <>
       <section className="on-brand bg-surface-brand text-on-brand">
@@ -141,7 +157,45 @@ export default function FoundersPage() {
         </dl>
       </section>
 
-      <section id="apply" className="scroll-mt-4 bg-surface-alt">
+      {/* Proof right before the ask. Hidden until there is something to show. */}
+      {showBacked && (
+        <section className="bg-surface-alt">
+          <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
+            <h2 className="text-[28px] font-semibold leading-9">Backed by HunBAN members</h2>
+            {startups !== null && startups > 0 && (
+              <p className="mt-6">
+                <span className="block font-display text-6xl leading-none tracking-[0.02em]">{startups}</span>
+                <span className="mt-1 block text-sm text-ink-muted">
+                  {startups === 1 ? "startup" : "startups"} backed by our members so far
+                </span>
+              </p>
+            )}
+            {backed.length > 0 && (
+              <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {backed.map((f) => (
+                  <li key={f.id} className="flex items-center gap-4">
+                    <span
+                      aria-hidden
+                      className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface text-lg font-semibold text-ink-muted"
+                    >
+                      {initials(f.full_name)}
+                    </span>
+                    <div>
+                      <p className="font-semibold leading-6">{f.full_name}</p>
+                      <p className="text-sm text-ink-muted">
+                        {[f.position, f.startup_name].filter(Boolean).join(", ")}
+                      </p>
+                      {f.year && <p className="text-sm text-ink-muted">Backed in {f.year}</p>}
+                    </div>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </div>
+        </section>
+      )}
+
+      <section id="apply" className={`scroll-mt-4 ${showBacked ? "" : "bg-surface-alt"}`}>
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className="text-[28px] font-semibold leading-9">Apply to pitch</h2>
           <p className="mt-2 max-w-2xl text-ink-muted">
