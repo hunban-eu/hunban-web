@@ -219,6 +219,35 @@ export default function EcosystemMap({ organisations, labels }: Props) {
       // ourselves below, only when the click lands on empty map.
       const popup = new maplibregl.Popup({ closeButton: true, closeOnClick: false, maxWidth: "280px", offset: 12 });
 
+      // On a phone the map is barely wider than a card, so for a pin right or left of
+      // centre the card fits on neither side and MapLibre lets it hang off the edge.
+      // After a card opens or changes, nudge the map just enough to bring the whole
+      // card inside the map, with a small margin. Twice at most: moving the map can
+      // flip the card to the pin's other side, and the second pass corrects that.
+      let checkQueued = false; // several calls in one moment run one check, not several pans
+      const keepPopupInView = (attempt = 0) => {
+        const m = mapRef.current;
+        if (!m || !popup.isOpen() || attempt > 1 || checkQueued) return;
+        checkQueued = true;
+        requestAnimationFrame(() => {
+          checkQueued = false;
+          const el = popup.getElement();
+          if (!el || !popup.isOpen()) return;
+          const box = m.getContainer().getBoundingClientRect();
+          const card = el.getBoundingClientRect();
+          const margin = 12;
+          let dx = 0;
+          let dy = 0;
+          if (card.left < box.left + margin) dx = card.left - (box.left + margin);
+          else if (card.right > box.right - margin) dx = card.right - (box.right - margin);
+          if (card.top < box.top + margin) dy = card.top - (box.top + margin);
+          else if (card.bottom > box.bottom - margin) dy = card.bottom - (box.bottom - margin);
+          if (Math.abs(dx) < 1 && Math.abs(dy) < 1) return;
+          m.once("moveend", () => keepPopupInView(attempt + 1));
+          m.panBy([dx, dy], { duration: 250 });
+        });
+      };
+
       // Single tile or font errors are normal and harmless. Only if the map
       // hasn't loaded at all after 15 seconds (tile service down) do we say so.
       const giveUp = window.setTimeout(() => setFailed(true), 15000);
@@ -345,13 +374,19 @@ export default function EcosystemMap({ organisations, labels }: Props) {
               : `${orgs.length} organisations close together`;
           const back = host ? `All at ${host.name}` : `All ${orgs.length} here`;
 
-          const showList = () => popup.setDOMContent(listContent(sorted, header, showOne));
-          const showOne = (o: MapOrganisation) =>
+          const showList = () => {
+            popup.setDOMContent(listContent(sorted, header, showOne));
+            keepPopupInView();
+          };
+          const showOne = (o: MapOrganisation) => {
             popup.setDOMContent(popupContent(o, { label: back, onClick: showList }));
+            keepPopupInView();
+          };
 
           popup.setLngLat(center);
           showList();
           popup.addTo(m);
+          keepPopupInView();
         };
 
         // One click handler for the whole map.
@@ -367,7 +402,10 @@ export default function EcosystemMap({ organisations, labels }: Props) {
 
           // A single pin: its card.
           if (f.layer.id === "points-hit") {
-            if (place?.[0]) popup.setLngLat(center).setDOMContent(popupContent(place[0])).addTo(m);
+            if (place?.[0]) {
+              popup.setLngLat(center).setDOMContent(popupContent(place[0])).addTo(m);
+              keepPopupInView();
+            }
             return;
           }
 
