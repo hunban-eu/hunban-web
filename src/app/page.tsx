@@ -33,7 +33,7 @@ const howWeWork = [
     text: "At the centre are the members of the HunBAN Association, private and institutional investors who back our mission and each other.",
   },
   {
-    title: "An open network",
+    title: "A curated network",
     text: "Around it are founders, investors and enablers from across Hungary and the Hungarian diaspora. You can take part before you commit to anything.",
   },
   {
@@ -117,7 +117,7 @@ export default async function Home() {
             The home of angel investing in <span className="text-yellow">Hungary</span>.
           </h1>
           <p className="mt-6 max-w-2xl text-lg text-on-brand-muted">
-            A trusted circle of angels at the centre, an open network of founders, investors and enablers around it. We
+            A trusted circle of angels at the centre, a curated network of founders, investors and enablers around it. We
             connect founders to the right people and help build success stories, not just funding rounds.
           </p>
 

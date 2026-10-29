@@ -57,7 +57,7 @@ const rhythm = [
 const ways = [
   {
     tag: "Get a taste",
-    title: "The open network",
+    title: "The network",
     items: [
       "Startup Arena pitch events",
       "A founder intro now and then, when we see a fit",
@@ -185,7 +185,7 @@ export default function InvestorsPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className={h2}>Two ways to be part of it</h2>
           <p className="mt-2 max-w-2xl text-ink-muted">
-            Start in the open network and step inside when you&apos;re ready. No pressure, no deadline.
+            Start in the network and step inside when you&apos;re ready. No pressure, no deadline.
           </p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {ways.map((w) => (

@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     template: "%s | HunBAN",
   },
   description:
-    "The home of angel investing in Hungary. A trusted circle of investors and an open network of founders, investors and ecosystem enablers.",
+    "The home of angel investing in Hungary. A trusted circle of investors and a curated network of founders, investors and ecosystem enablers.",
   // PRE-LAUNCH: keep search engines away while the site is being built.
   // Remove this block (and src/app/robots.ts) on launch day.
   robots: { index: false, follow: false },
