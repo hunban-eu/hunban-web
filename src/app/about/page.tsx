@@ -117,7 +117,15 @@ export default async function AboutPage() {
   const { counts, members, institutions } = await getNetwork();
   // Angels under "Our members"; institutional representatives under the institutions.
   const angels = members.filter((m) => m.membership === "angel");
-  const representatives = members.filter((m) => m.membership === "institutional");
+  // Representatives follow the order of the institution logos above them;
+  // two people from the same institution stay in name order.
+  const logoOrder = (name: string | null) => {
+    const i = institutions.findIndex((inst) => inst.name === name);
+    return i === -1 ? institutions.length : i;
+  };
+  const representatives = members
+    .filter((m) => m.membership === "institutional")
+    .sort((a, b) => logoOrder(a.institution) - logoOrder(b.institution));
 
   const stats = [
     ...(counts
