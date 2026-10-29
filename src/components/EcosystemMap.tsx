@@ -505,12 +505,13 @@ export default function EcosystemMap({ organisations, labels }: Props) {
         .
       </p>
 
-      <h2 className="mt-14 text-[28px] font-semibold leading-9">All entries</h2>
+      {/* The list follows the filters, so it has no "all entries" heading of its own. */}
+      <div className="mt-6">
       {sections.map((sec) => (
         <section key={sec.key} className="mt-8" aria-labelledby={`sec-${sec.key}`}>
-          <h3 id={`sec-${sec.key}`} className="text-xl font-semibold leading-7">
+          <h2 id={`sec-${sec.key}`} className="text-xl font-semibold leading-7">
             {sec.title} <span className="font-normal text-ink-muted">({sec.orgs.length})</span>
-          </h3>
+          </h2>
           <ul className="mt-3 grid gap-3 sm:grid-cols-2">
             {sec.orgs.map((o) => (
               <OrgCard key={o.id} o={o} />
@@ -518,6 +519,7 @@ export default function EcosystemMap({ organisations, labels }: Props) {
           </ul>
         </section>
       ))}
+      </div>
     </div>
   );
 }
