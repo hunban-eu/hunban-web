@@ -115,6 +115,9 @@ function Person({
 
 export default async function AboutPage() {
   const { counts, members, institutions } = await getNetwork();
+  // Angels under "Our members"; institutional representatives under the institutions.
+  const angels = members.filter((m) => m.membership === "angel");
+  const representatives = members.filter((m) => m.membership === "institutional");
 
   const stats = [
     ...(counts
@@ -225,14 +228,14 @@ export default async function AboutPage() {
         </div>
       </section>
 
-      {members.length > 0 && (
+      {angels.length > 0 && (
         <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className={h2}>Our members</h2>
           <p className="mt-2 max-w-2xl text-ink-muted">
             The angels who keep HunBAN going. We only show members who chose to be listed.
           </p>
           <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {members.map((m) => (
+            {angels.map((m) => (
               <Person
                 key={m.id}
                 name={m.full_name}
@@ -246,7 +249,7 @@ export default async function AboutPage() {
       )}
 
       {institutions.length > 0 && (
-        <section className={members.length > 0 ? "bg-surface-alt" : ""}>
+        <section className={angels.length > 0 ? "bg-surface-alt" : ""}>
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
             <h2 className={h2}>Institutional members</h2>
             <ul className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
@@ -276,6 +279,22 @@ export default async function AboutPage() {
                 );
               })}
             </ul>
+            {representatives.length > 0 && (
+              <>
+                <h3 className="mt-10 text-xl font-semibold leading-7">Their representatives</h3>
+                <ul className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                  {representatives.map((m) => (
+                    <Person
+                      key={m.id}
+                      name={m.full_name}
+                      role={[m.position, m.institution].filter(Boolean).join(", ") || null}
+                      photo={m.photo_url}
+                      linkedin={m.linkedin_url}
+                    />
+                  ))}
+                </ul>
+              </>
+            )}
           </div>
         </section>
       )}

@@ -5,8 +5,9 @@ import { getSupabase } from "@/lib/supabase";
 // Members and institutions are only listed when they agreed to be shown:
 // Row Level Security returns members who are published AND gave consent,
 // and institutions that are published. The counter is different: it comes
-// from the network_counts() database function, which counts everyone but
-// returns only the two totals, never names.
+// from the network_counts() database function, which returns only two totals,
+// never names: angel memberships that count (not second representatives, not
+// institutional representatives) and institutions.
 
 export type NetworkMember = {
   id: string;
@@ -15,6 +16,9 @@ export type NetworkMember = {
   linkedin_url: string | null;
   position: string | null;
   institution: string | null;
+  // "angel" = own angel membership, listed under Our members.
+  // "institutional" = represents `institution`, listed under Institutional members.
+  membership: "angel" | "institutional";
 };
 
 export type NetworkInstitution = {
@@ -44,7 +48,7 @@ export async function getNetwork(): Promise<NetworkData> {
     supabase.rpc("network_counts").single<{ angels: number; institutions: number }>(),
     supabase
       .from("members")
-      .select("id, full_name, photo_url, linkedin_url, position, institutions(name)")
+      .select("id, full_name, photo_url, linkedin_url, position, membership, institutions(name)")
       .eq("is_published", true)
       .eq("consent_given", true)
       .returns<MemberRow[]>(),
