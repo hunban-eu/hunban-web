@@ -174,12 +174,23 @@ export default async function FoundersPage() {
               <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {backed.map((f) => (
                   <li key={f.id} className="flex items-center gap-4">
-                    <span
-                      aria-hidden
-                      className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface text-lg font-semibold text-ink-muted"
-                    >
-                      {initials(f.full_name)}
-                    </span>
+                    {f.photo_url ? (
+                      // eslint-disable-next-line @next/next/no-img-element
+                      <img
+                        src={f.photo_url}
+                        alt={f.full_name}
+                        width={72}
+                        height={72}
+                        className="h-[72px] w-[72px] shrink-0 rounded-full object-cover"
+                      />
+                    ) : (
+                      <span
+                        aria-hidden
+                        className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface text-lg font-semibold text-ink-muted"
+                      >
+                        {initials(f.full_name)}
+                      </span>
+                    )}
                     <div>
                       <p className="font-semibold leading-6">{f.full_name}</p>
                       <p className="text-sm text-ink-muted">

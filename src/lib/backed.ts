@@ -11,6 +11,7 @@ export type BackedFounder = {
   position: string | null;
   startup_name: string;
   year: number | null;
+  photo_url: string | null;
 };
 
 export async function getBackedFounders(): Promise<{ founders: BackedFounder[]; startups: number | null }> {
@@ -20,7 +21,7 @@ export async function getBackedFounders(): Promise<{ founders: BackedFounder[]; 
   const [founders, count] = await Promise.all([
     supabase
       .from("backed_founders")
-      .select("id, full_name, position, startup_name, year")
+      .select("id, full_name, position, startup_name, year, photo_url")
       .eq("is_published", true)
       .order("year", { ascending: false, nullsFirst: false })
       .order("startup_name", { ascending: true })
