@@ -176,8 +176,9 @@ export default async function AboutPage() {
               association based in Budapest, and a member of EBAN, the European Business Angels Network.
             </p>
             <p className="mt-4 text-ink-muted">
-              Our mission is to turn angel investing from a rare exception into a habit for Hungary&apos;s business
-              community. We work for Hungarians at home, foreigners living in Hungary, and Hungarians abroad.
+              We believe every successful business leader and entrepreneur should invest their time, effort and
+              capital in the next generation of founders. Our mission is to make that the norm, turning angel
+              investing from a rare exception into a habit for Hungary&apos;s business community. We work for Hungarians at home, foreigners living in Hungary, and Hungarians abroad.
             </p>
           </div>
           <div>
