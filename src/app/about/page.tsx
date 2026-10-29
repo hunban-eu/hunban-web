@@ -199,10 +199,6 @@ export default async function AboutPage() {
               </li>
             ))}
           </ul>
-          <p className="mt-8 max-w-3xl text-ink">
-            There&apos;s no sign-up. Reach out any time, and once we&apos;ve got to know each other, we&apos;ll invite
-            you in.
-          </p>
         </div>
       </section>
 
