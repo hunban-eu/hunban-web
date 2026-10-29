@@ -74,7 +74,7 @@ const ways = [
     items: [
       "Full involvement with the startups we work with, before and after every pitch",
       "Club events and internal meetings",
-      "International trips with the network",
+      "Self-organised trips abroad with fellow members",
       "A personal connection with our team, board and fellow angels",
     ],
     links: [{ label: "See membership", href: "#membership" }],
