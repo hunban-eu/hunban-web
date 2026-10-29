@@ -99,10 +99,8 @@ function Person({
       )}
       <div>
         <p className="font-semibold leading-6">{name}</p>
-        {tier && (
-          <p className="text-[11px] font-semibold uppercase leading-4 tracking-[0.08em] text-ink-muted">{tier}</p>
-        )}
-        {role && <p className={`text-sm text-ink-muted ${tier ? "mt-1" : ""}`}>{role}</p>}
+        {tier && <p className="text-sm text-ink-muted">{tier}</p>}
+        {role && <p className="text-sm text-ink-muted">{role}</p>}
         {linkedin && (
           <a
             href={linkedin}
