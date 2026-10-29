@@ -31,8 +31,8 @@ const helps = [
 
 const steps = [
   { title: "Apply", text: "Tell us about your startup in the form below." },
-  { title: "We review", text: "We review every complete application and reply if it's a fit." },
-  { title: "Pitch", text: "Selected startups pitch at Startup Arena to our investor members." },
+  { title: "We review", text: "We review every eligible application and reply to each one." },
+  { title: "Pitch", text: "Selected startups pitch at Startup Arena to our angels and investors." },
   {
     title: "Follow-up",
     text: "Investors receive your pitch recording, share feedback and interest, and we make the introductions that make sense.",
@@ -64,7 +64,7 @@ const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
   },
   {
     q: "What makes a strong application?",
-    a: "A complete application gets a reply. That means:",
+    a: "Every eligible application gets a reply. Eligible means:",
     list: [
       "Written in English",
       "Every field filled in, with your deck and materials attached",

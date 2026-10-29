@@ -50,7 +50,7 @@ const rhythm = [
   {
     when: "Every quarter",
     title: "The club",
-    text: "The network meets for professional sessions and informal club evenings.",
+    text: "Professional sessions for the whole network, and informal club evenings for association members.",
   },
 ];
 

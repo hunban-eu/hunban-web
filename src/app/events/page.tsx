@@ -22,7 +22,7 @@ export default async function EventsPage() {
             Where angels and founders <span className="text-yellow">meet</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            HunBAN pitch nights and club events, plus the partner events worth your evening.
+            Startup Arena, HunBAN's own events and the partner events worth your evening.
           </p>
         </div>
       </section>

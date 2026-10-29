@@ -276,7 +276,7 @@ export default async function Home() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className={h2}>Not sure where you fit?</h2>
           <p className="mt-4 max-w-2xl text-ink-muted">
-            Come to a Startup Arena or a club evening and meet us in person. No form, no commitment.
+            Come to a Startup Arena, or get to know our team and the founders in our network. No form, no commitment.
           </p>
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4">
             {luma && (
