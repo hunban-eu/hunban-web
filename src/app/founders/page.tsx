@@ -157,9 +157,30 @@ export default async function FoundersPage() {
         </dl>
       </section>
 
-      {/* Proof right before the ask. Hidden until there is something to show. */}
+      <section id="apply" className="scroll-mt-4 bg-surface-alt">
+        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
+          <h2 className="text-[28px] font-semibold leading-9">Apply to pitch</h2>
+          <p className="mt-2 max-w-2xl text-ink-muted">
+            Tell us what you are building. Prefer a full page?{" "}
+            <a href={APPLICATION_FORM} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline underline-offset-4">
+              Open the form in a new tab ↗
+            </a>
+          </p>
+          {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
+          <iframe
+            title="HunBAN startup application form"
+            src={APPLICATION_FORM}
+            className="clickup-embed clickup-dynamic-height mt-6 w-full rounded-md border border-line-subtle bg-white"
+            style={{ minHeight: 900 }}
+            loading="lazy"
+          />
+          <Script src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js" strategy="lazyOnload" />
+        </div>
+      </section>
+
+      {/* Proof after the form. Hidden until there is something to show. */}
       {showBacked && (
-        <section className="bg-surface-alt">
+        <section>
           <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
             <h2 className="text-[28px] font-semibold leading-9">Backed by HunBAN members</h2>
             {startups !== null && startups > 0 && (
@@ -186,7 +207,7 @@ export default async function FoundersPage() {
                     ) : (
                       <span
                         aria-hidden
-                        className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface text-lg font-semibold text-ink-muted"
+                        className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface-alt text-lg font-semibold text-ink-muted"
                       >
                         {initials(f.full_name)}
                       </span>
@@ -205,27 +226,6 @@ export default async function FoundersPage() {
           </div>
         </section>
       )}
-
-      <section id="apply" className={`scroll-mt-4 ${showBacked ? "" : "bg-surface-alt"}`}>
-        <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-          <h2 className="text-[28px] font-semibold leading-9">Apply to pitch</h2>
-          <p className="mt-2 max-w-2xl text-ink-muted">
-            Tell us what you are building. Prefer a full page?{" "}
-            <a href={APPLICATION_FORM} target="_blank" rel="noopener noreferrer" className="font-semibold text-ink underline underline-offset-4">
-              Open the form in a new tab ↗
-            </a>
-          </p>
-          {/* ClickUp's embed: the iframe plus ClickUp's script that sizes it to the form's height. */}
-          <iframe
-            title="HunBAN startup application form"
-            src={APPLICATION_FORM}
-            className="clickup-embed clickup-dynamic-height mt-6 w-full rounded-md border border-line-subtle bg-white"
-            style={{ minHeight: 900 }}
-            loading="lazy"
-          />
-          <Script src="https://app-cdn.clickup.com/assets/js/forms-embed/v1.js" strategy="lazyOnload" />
-        </div>
-      </section>
     </>
   );
 }
