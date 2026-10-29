@@ -6,8 +6,8 @@ import { getSupabase } from "@/lib/supabase";
 // Row Level Security returns members who are published AND gave consent,
 // and institutions that are published. The counter is different: it comes
 // from the network_counts() database function, which returns only two totals,
-// never names: angel memberships that count (not second representatives, not
-// institutional representatives) and institutions.
+// never names: angels and ambassadors that count (not second representatives,
+// not institutional representatives) and institutions.
 
 export type NetworkMember = {
   id: string;
@@ -18,7 +18,7 @@ export type NetworkMember = {
   institution: string | null;
   // "angel" = own angel membership, listed under Our members.
   // "institutional" = represents `institution`, listed under Institutional members.
-  // "ambassador" = HunBAN Ambassador: not a member, listed under Our members, never counted.
+  // "ambassador" = HunBAN Ambassador: an angel who is not a member, listed under Our members and counted.
   membership: "angel" | "institutional" | "ambassador";
   // Angel tier: "community member" or "actively investing" (shown as Professional Member).
   role: "community member" | "actively investing" | null;
