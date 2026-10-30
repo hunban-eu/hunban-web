@@ -141,14 +141,6 @@ export default async function Home() {
         </div>
       </section>
 
-      {/* Preview note: remove when the events, map and quotes hold real data */}
-      <div className="bg-surface-alt">
-        <p className="mx-auto max-w-6xl px-4 py-3 text-sm text-ink-muted sm:px-8">
-          <span className="font-semibold text-ink">Preview:</span> events, the ecosystem map and quotes currently show
-          sample data. We&apos;re filling them in before launch.
-        </p>
-      </div>
-
       {/* 2. How we work */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className={h2}>How HunBAN works</h2>
