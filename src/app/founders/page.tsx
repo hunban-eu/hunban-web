@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Script from "next/script";
-import { getBackedFounders } from "@/lib/backed";
+import { getBackedFounders, type BackedFounder } from "@/lib/backed";
 
 export const metadata: Metadata = {
   title: "For founders",
@@ -92,8 +92,24 @@ function initials(name: string) {
     .join("");
 }
 
+type StartupGroup = { key: string; startup: string; year: number | null; founders: BackedFounder[] };
+
+// Founders grouped by startup, keeping the database order (newest first).
+function groupByStartup(founders: BackedFounder[]): StartupGroup[] {
+  const groups = new Map<string, StartupGroup>();
+  for (const f of founders) {
+    const key = f.startup_name.trim().toLowerCase();
+    const g = groups.get(key) ?? { key, startup: f.startup_name.trim(), year: f.year, founders: [] };
+    if (f.year && (!g.year || f.year > g.year)) g.year = f.year;
+    g.founders.push(f);
+    groups.set(key, g);
+  }
+  return [...groups.values()];
+}
+
 export default async function FoundersPage() {
   const { founders: backed, startups } = await getBackedFounders();
+  const groups = groupByStartup(backed);
   const showBacked = backed.length > 0 || (startups ?? 0) > 0;
 
   return (
@@ -195,44 +211,54 @@ export default async function FoundersPage() {
                 </span>
               </p>
             )}
-            {backed.length > 0 && (
-              <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                {backed.map((f) => (
-                  <li key={f.id} className="flex items-center gap-4">
-                    {f.photo_url ? (
-                      // eslint-disable-next-line @next/next/no-img-element
-                      <img
-                        src={f.photo_url}
-                        alt={f.full_name}
-                        width={72}
-                        height={72}
-                        className="h-[72px] w-[72px] shrink-0 rounded-full object-cover"
-                      />
-                    ) : (
-                      <span
-                        aria-hidden
-                        className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface-alt text-lg font-semibold text-ink-muted"
-                      >
-                        {initials(f.full_name)}
-                      </span>
-                    )}
-                    <div>
-                      <p className="font-semibold leading-6">{f.full_name}</p>
-                      <p className="text-sm text-ink-muted">
-                        {[f.position, f.startup_name].filter(Boolean).join(", ")}
-                      </p>
-                      {f.year && <p className="text-sm text-ink-muted">Backed in {f.year}</p>}
-                      {f.linkedin_url && (
-                        <a
-                          href={f.linkedin_url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="link-reveal mt-1 inline-block pb-0.5 text-sm text-ink-muted hover:text-ink"
-                        >
-                          LinkedIn ↗
-                        </a>
-                      )}
+            {groups.length > 0 && (
+              // One block per startup, its founders stacked inside. Blocks flow into
+              // balanced columns (masonry), so a startup with four founders and one with
+              // a single founder sit together without gaps, whatever the mix.
+              <ul className="mt-10 columns-1 gap-x-6 sm:columns-2 lg:columns-3">
+                {groups.map((g) => (
+                  <li key={g.key} className="mb-10 break-inside-avoid">
+                    <div className="border-t border-line-subtle pt-4">
+                      <h3 className="text-lg font-semibold leading-7">{g.startup}</h3>
+                      {g.year && <p className="text-sm text-ink-muted">Backed in {g.year}</p>}
                     </div>
+                    <ul className="mt-5 grid gap-5">
+                      {g.founders.map((f) => (
+                        <li key={f.id} className="flex items-center gap-4">
+                          {f.photo_url ? (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                              src={f.photo_url}
+                              alt={f.full_name}
+                              width={72}
+                              height={72}
+                              className="h-[72px] w-[72px] shrink-0 rounded-full object-cover"
+                            />
+                          ) : (
+                            <span
+                              aria-hidden
+                              className="flex h-[72px] w-[72px] shrink-0 items-center justify-center rounded-full bg-surface-alt text-lg font-semibold text-ink-muted"
+                            >
+                              {initials(f.full_name)}
+                            </span>
+                          )}
+                          <div>
+                            <p className="font-semibold leading-6">{f.full_name}</p>
+                            {f.position && <p className="text-sm text-ink-muted">{f.position}</p>}
+                            {f.linkedin_url && (
+                              <a
+                                href={f.linkedin_url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="link-reveal mt-1 inline-block pb-0.5 text-sm text-ink-muted hover:text-ink"
+                              >
+                                LinkedIn ↗
+                              </a>
+                            )}
+                          </div>
+                        </li>
+                      ))}
+                    </ul>
                   </li>
                 ))}
               </ul>
