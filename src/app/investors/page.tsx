@@ -65,8 +65,8 @@ const ways = [
       "Events across the ecosystem",
     ],
     links: [
+      { label: "Get to know us", href: "#apply" },
       { label: "See upcoming events", href: "/events" },
-      { label: "Follow our Luma calendar ↗", href: "https://luma.com/hunban", external: true },
     ],
   },
   {
@@ -78,7 +78,7 @@ const ways = [
       "International trips with fellow members",
       "A personal connection with our team, board and fellow members",
     ],
-    links: [{ label: "See membership", href: "#membership" }],
+    links: [{ label: "See how to join us", href: "#membership" }],
   },
 ];
 

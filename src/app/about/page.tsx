@@ -322,12 +322,12 @@ export default async function AboutPage() {
           <Link href="/founders" className="on-brand group rounded-md bg-surface-brand p-6 text-on-brand">
             <p className="text-xl font-semibold leading-7">For founders</p>
             <p className="mt-2 text-on-brand-muted">Pitch at Startup Arena and join our network.</p>
-            <p className="mt-4 font-semibold text-yellow group-hover:underline">Apply to pitch →</p>
+            <p className="mt-4 font-semibold text-yellow group-hover:underline">See how to pitch →</p>
           </Link>
           <Link href="/investors" className="on-brand group rounded-md bg-surface-brand p-6 text-on-brand">
             <p className="text-xl font-semibold leading-7">For investors</p>
             <p className="mt-2 text-on-brand-muted">Join the early-stage investors who give back.</p>
-            <p className="mt-4 font-semibold text-yellow group-hover:underline">Start a conversation →</p>
+            <p className="mt-4 font-semibold text-yellow group-hover:underline">See how to join →</p>
           </Link>
         </div>
       </section>
