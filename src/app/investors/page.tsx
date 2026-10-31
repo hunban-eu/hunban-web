@@ -137,7 +137,7 @@ export default function InvestorsPage() {
           <p className="mt-4 text-ink-muted">
             HunBAN is building the environment where that feels natural, for Hungarians at home, for foreigners living
             in Hungary, and for Hungarians abroad. We&apos;re turning angel investing from a rare exception into a habit
-            for Hungary&apos;s business community. None of it works without angels like you.
+            for Hungary&apos;s business community.
           </p>
         </div>
       </section>
