@@ -14,7 +14,7 @@ const APPLICATION_FORM = "https://forms.clickup.com/90121663928/f/2kxupxdr-952/K
 const helps = [
   {
     title: "Warm introductions",
-    text: "If we see a fit, we introduce you personally to investors and experts who back what you're building.",
+    text: "If we see a fit, we introduce you personally to investors, mentors and experts who back what you're building.",
   },
   {
     title: "A room of the right people",
