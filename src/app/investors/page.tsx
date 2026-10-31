@@ -94,7 +94,7 @@ const steps = [
   { title: "Get in touch", text: "Fill in the form below, reach out to Adam, or ask any HunBAN member to introduce you." },
   { title: "Meet us", text: "Over a call or a coffee, we get to know you and check that our values and vision match." },
   { title: "Board approval", text: "Our board reviews every application and decides at one of its regular meetings." },
-  { title: "Welcome on board", text: "Once your fee and contribution arrive, you're in for 12 months, then renew or step out." },
+  { title: "Welcome on board", text: "Once your membership fee arrives, you're in for 12 months, then renew or step out." },
 ];
 
 const h2 = "text-[28px] font-semibold leading-9";
@@ -243,8 +243,8 @@ export default function InvestorsPage() {
           ))}
         </ul>
         <p className="mt-4 max-w-3xl text-sm text-ink-muted">
-          Membership comes with an annual fee and a voluntary contribution. We&apos;ll walk you through how it works
-          when we talk.
+          Membership has an annual fee. On top of that, members can choose to give a voluntary contribution if they
+          wish. We&apos;ll walk you through it when we talk.
         </p>
 
         <h3 className="mt-12 text-xl font-semibold leading-7">How joining works</h3>
