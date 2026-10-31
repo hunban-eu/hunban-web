@@ -82,12 +82,12 @@ const ways = [
   },
 ];
 
-// Who joins the association. No prices on the site on purpose: membership isn't a
+// Membership types and who each is for. No prices on the site on purpose: membership isn't a
 // purchase, and fees are talked through in person (most members join after we reach out).
 const tiers = [
-  { name: "Community members", for: "Angels who aren\u2019t investing right now, but want to be part of it." },
-  { name: "Professional members", for: "Angels who are actively investing." },
-  { name: "Institutional members", for: "VCs, CVCs, incubators and accelerators." },
+  { name: "Community membership", for: "For angels who aren\u2019t investing right now, but want to be part of it." },
+  { name: "Professional membership", for: "For angels who are actively investing." },
+  { name: "Institutional membership", for: "For VCs, CVCs, incubators and accelerators." },
 ];
 
 const steps = [
@@ -233,7 +233,7 @@ export default function InvestorsPage() {
           to the action.
         </p>
 
-        <h3 className="mt-12 text-xl font-semibold leading-7">Who joins</h3>
+        <h3 className="mt-12 text-xl font-semibold leading-7">Membership types</h3>
         <ul className="mt-4 grid gap-4 md:grid-cols-3">
           {tiers.map((t) => (
             <li key={t.name} className="rounded-md border border-line-subtle p-6">
