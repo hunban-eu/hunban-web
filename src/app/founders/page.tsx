@@ -92,14 +92,16 @@ function initials(name: string) {
     .join("");
 }
 
-type StartupGroup = { key: string; startup: string; year: number | null; founders: BackedFounder[] };
+type StartupGroup = { key: string; startup: string; year: number | null; website: string | null; founders: BackedFounder[] };
 
 // Founders grouped by startup, keeping the database order (newest first).
 function groupByStartup(founders: BackedFounder[]): StartupGroup[] {
   const groups = new Map<string, StartupGroup>();
   for (const f of founders) {
     const key = f.startup_name.trim().toLowerCase();
-    const g = groups.get(key) ?? { key, startup: f.startup_name.trim(), year: f.year, founders: [] };
+    const g = groups.get(key) ?? { key, startup: f.startup_name.trim(), year: f.year, website: null, founders: [] };
+    // The website only needs to be on one founder row of the startup.
+    if (!g.website && f.website_url) g.website = f.website_url;
     if (f.year && (!g.year || f.year > g.year)) g.year = f.year;
     g.founders.push(f);
     groups.set(key, g);
@@ -219,7 +221,23 @@ export default async function FoundersPage() {
                 {groups.map((g) => (
                   <li key={g.key} className="mb-10 break-inside-avoid">
                     <div className="border-t border-line-subtle pt-4">
-                      <h3 className="text-lg font-semibold leading-7">{g.startup}</h3>
+                      <h3 className="text-lg font-semibold leading-7">
+                        {g.website ? (
+                          // Looks like plain text at rest; underline and arrow appear on hover.
+                          <a href={g.website} target="_blank" rel="noopener noreferrer" className="link-reveal group/site">
+                            {g.startup}
+                            <span
+                              aria-hidden="true"
+                              className="ml-1 inline-block text-base font-normal opacity-0 transition-opacity duration-200 group-hover/site:opacity-100 group-focus-visible/site:opacity-100 motion-reduce:transition-none"
+                            >
+                              ↗
+                            </span>
+                            <span className="sr-only"> (website, opens in a new tab)</span>
+                          </a>
+                        ) : (
+                          g.startup
+                        )}
+                      </h3>
                       {g.year && <p className="text-sm text-ink-muted">Backed in {g.year}</p>}
                     </div>
                     <ul className="mt-5 grid gap-5">
