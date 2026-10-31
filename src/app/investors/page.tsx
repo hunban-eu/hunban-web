@@ -184,10 +184,8 @@ export default function InvestorsPage() {
       {/* 5. Two ways in */}
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
-          <h2 className={h2}>Two ways to be part of it</h2>
-          <p className="mt-2 max-w-2xl text-ink-muted">
-            Start in the network and step inside when you&apos;re ready. No pressure, no deadline.
-          </p>
+          <h2 className={h2}>Start in the network and step inside when you&apos;re ready</h2>
+          <p className="mt-2 max-w-2xl text-ink-muted">No pressure, no deadline.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {ways.map((w) => (
               <div key={w.title} className="flex flex-col rounded-md bg-surface p-6">
