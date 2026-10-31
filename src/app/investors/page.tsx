@@ -264,7 +264,8 @@ export default function InvestorsPage() {
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className={h2}>Start with a conversation</h2>
           <p className="mt-2 max-w-3xl text-ink-muted">
-            Whether you want to join the association or just get to know the network, start here. Prefer a full page?{" "}
+            Every journey with HunBAN starts the same way: getting to know each other. Tell us about yourself, and
+            we&apos;ll take it from there. Prefer a full page?{" "}
             <a href={INTEREST_FORM} target="_blank" rel="noopener noreferrer" className={`font-semibold ${linkStyle}`}>
               Open the form in a new tab ↗
             </a>
