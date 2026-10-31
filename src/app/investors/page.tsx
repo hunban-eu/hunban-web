@@ -146,7 +146,7 @@ export default function InvestorsPage() {
       <section className="bg-surface-alt">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
           <h2 className={h2}>What you get back</h2>
-          <p className="mt-2 max-w-2xl text-ink-muted">Giving back comes first. But it gives back too.</p>
+          <p className="mt-2 max-w-2xl text-ink-muted">Giving comes first. But it gives back too.</p>
           <div className="mt-6 grid gap-4 sm:grid-cols-2">
             {getBack.map((g) => (
               <div key={g.title} className="rounded-md bg-surface p-6">
