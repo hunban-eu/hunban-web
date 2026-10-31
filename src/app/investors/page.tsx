@@ -62,7 +62,7 @@ const ways = [
     items: [
       "Startup Arena pitch events",
       "A founder intro now and then, when we see a fit",
-      "Community events across the ecosystem",
+      "Events across the ecosystem",
     ],
     links: [
       { label: "See upcoming events", href: "/events" },
