@@ -46,6 +46,10 @@ const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
     a: "HunBAN is not a fund. Our members are private and institutional investors who decide and invest individually. We bring you together.",
   },
   {
+    q: "What is Startup Arena?",
+    a: "Startup Arena is HunBAN’s monthly pitch event, held throughout the year with breaks in summer and over Christmas. It’s held in English, at rotating partner venues in Budapest. Each edition opens with a fireside chat, then selected startups give a 5-minute pitch, with room for questions afterwards, in front of our angels, investors and an open audience from across our network. Pitching is free for founders: we select the startups from the applications we receive. Investor members who couldn’t be there receive the pitch recordings, so your pitch reaches beyond the room.",
+  },
+  {
     q: "Who can apply?",
     a: "Early-stage startups with a real link to Hungary, for example:",
     list: [
