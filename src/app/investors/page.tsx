@@ -6,7 +6,7 @@ import ContactCard from "@/components/ContactCard";
 export const metadata: Metadata = {
   title: "For investors",
   description:
-    "Join the angels who give back. Back early-stage founders, meet remarkable people and invest in companies worth believing in, with HunBAN.",
+    "Join the early-stage investors who give back. Support founders, meet remarkable people and invest in companies worth believing in, with HunBAN.",
 };
 
 // The investor interest form in ClickUp; submissions land in the Member Funnel.
@@ -41,7 +41,7 @@ const rhythm = [
   {
     when: "Every month",
     title: "Startup Arena",
-    text: "Founders pitch, investors ask the hard questions, and the best conversations carry on after the event.",
+    text: "Founders pitch, investors listen, and the best conversations carry on after the event.",
   },
   {
     when: "In between",
@@ -76,7 +76,7 @@ const ways = [
       "Full involvement with the startups we work with, before and after every pitch",
       "Club events and internal meetings",
       "International trips with fellow members",
-      "A personal connection with our team, board and fellow angels",
+      "A personal connection with our team, board and fellow members",
     ],
     links: [{ label: "See membership", href: "#membership" }],
   },
@@ -110,8 +110,8 @@ export default function InvestorsPage() {
             Help build Hungary&apos;s next <span className="text-yellow">success stories</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            Join the angels who give back: back early-stage founders, meet remarkable people, and invest in companies
-            worth believing in.
+            Join the early-stage investors who give back: support founders, meet remarkable people, and invest in
+            companies worth believing in.
           </p>
           <div className="mt-8 flex flex-wrap gap-3">
             <a href="#apply" className="inline-block rounded-sm bg-accent px-5 py-3 font-semibold text-on-accent">
@@ -130,7 +130,7 @@ export default function InvestorsPage() {
       {/* 2. The belief */}
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
         <div className="max-w-3xl">
-          <h2 className={h2}>It starts with giving back</h2>
+          <h2 className={h2}>What we believe</h2>
           <p className="mt-4 text-xl leading-8 text-ink">
             We believe every successful business leader and entrepreneur should invest their time, effort and capital
             in the next generation of founders.
@@ -176,7 +176,7 @@ export default function InvestorsPage() {
           ))}
         </ol>
         <p className="mt-8 max-w-3xl text-ink">
-          We don&apos;t stop at funding. We help founders find the people they need to build a real success story, and
+          It doesn&apos;t stop at funding. We help founders find the people they need to build a real success story, and
           our investors are part of that from the start.
         </p>
       </section>
