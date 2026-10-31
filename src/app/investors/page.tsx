@@ -224,13 +224,13 @@ export default function InvestorsPage() {
       <section id="membership" className="scroll-mt-4 mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
         <h2 className={h2}>Membership</h2>
         <p className="mt-4 max-w-3xl text-xl leading-8 text-ink">
-          Membership isn&apos;t a purchase. If you invest in Hungarian startups, it&apos;s the baseline: you contribute,
-          we get things done, and the whole ecosystem gains.
+          Membership is what keeps HunBAN running. We&apos;re a grassroots initiative creating value for the whole
+          ecosystem, funded by the people who believe in it.
         </p>
         <p className="mt-4 max-w-2xl text-ink-muted">
-          Association members share our values and vision, and support our journey financially too. They&apos;re the
-          core of the community and the main focus of our work: they put in the most, and they&apos;re closest to the
-          action.
+          We invite angels and investors connected to Hungary to back our vision by joining the association. Members
+          are the core of the community and the main focus of our work: they put in the most, and they&apos;re closest
+          to the action.
         </p>
 
         <h3 className="mt-12 text-xl font-semibold leading-7">Who joins</h3>
