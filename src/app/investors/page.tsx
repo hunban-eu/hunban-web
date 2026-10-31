@@ -22,6 +22,7 @@ const getBack = [
       "Meet interesting people from every corner of the ecosystem",
       "Help young founders grow, with your time and experience",
       "Be part of a success story from day one",
+      "Back a grassroots initiative built and shaped by its members",
     ],
   },
   {
