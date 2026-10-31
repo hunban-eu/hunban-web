@@ -197,7 +197,7 @@ export default async function AboutPage() {
               mentor or an investor.
             </p>
             <p className="mt-4 text-ink-muted">
-              We&apos;re a community of angels, founders and the people who help them succeed, run by a small team that
+              We&apos;re a community of investors, founders and the people who help them succeed, run by a small team that
               knows everyone in it. That&apos;s what makes our intros work: we know who&apos;s building what, who&apos;s
               looking for what, and who would genuinely enjoy meeting whom.
             </p>
