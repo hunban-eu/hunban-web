@@ -22,7 +22,7 @@ export default async function EventsPage() {
             Upcoming events in the startup <span className="text-yellow">ecosystem</span>
           </h1>
           <p className="mt-4 max-w-2xl text-on-brand-muted">
-            Startup Arena, HunBAN's own events and the partner events worth your evening. Curated by HunBAN.
+            HunBAN's own events and the partner events worth your evening. Curated by the HunBAN team.
           </p>
         </div>
       </section>
