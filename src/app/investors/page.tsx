@@ -243,8 +243,8 @@ export default function InvestorsPage() {
           ))}
         </ul>
         <p className="mt-4 max-w-3xl text-sm text-ink-muted">
-          Membership has an annual fee. On top of that, members can choose to give a voluntary contribution if they
-          wish. We&apos;ll walk you through it when we talk.
+          Membership has an annual fee. On top of that, members can choose to give a voluntary contribution.
+          We&apos;ll walk you through it when we talk.
         </p>
 
         <h3 className="mt-12 text-xl font-semibold leading-7">How joining works</h3>
