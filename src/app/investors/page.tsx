@@ -82,12 +82,12 @@ const ways = [
   },
 ];
 
-// Big numbers are the level our plans are built on, in thousand HUF per year.
-// The fee is 100k for everyone; the rest is a suggested, voluntary contribution.
+// Who joins the association. No prices on the site on purpose: membership isn't a
+// purchase, and fees are talked through in person (most members join after we reach out).
 const tiers = [
-  { name: "Community member", amount: 100, for: "For angels not investing right now." },
-  { name: "Professional member", amount: 200, for: "For angels who are actively investing." },
-  { name: "Institutional member", amount: 400, for: "For VCs, incubators and accelerators." },
+  { name: "Community members", for: "Angels who aren\u2019t investing right now, but want to be part of it." },
+  { name: "Professional members", for: "Angels who are actively investing." },
+  { name: "Institutional members", for: "VCs, CVCs, incubators and accelerators." },
 ];
 
 const steps = [
@@ -228,23 +228,23 @@ export default function InvestorsPage() {
           we get things done, and the whole ecosystem gains.
         </p>
         <p className="mt-4 max-w-2xl text-ink-muted">
-          Members are the core of the community and the main focus of our work. They put in the most, and they&apos;re
-          closest to the action.
+          Association members share our values and vision, and support our journey financially too. They&apos;re the
+          core of the community and the main focus of our work: they put in the most, and they&apos;re closest to the
+          action.
         </p>
-        <ul className="mt-8 grid gap-4 md:grid-cols-3">
+
+        <h3 className="mt-12 text-xl font-semibold leading-7">Who joins</h3>
+        <ul className="mt-4 grid gap-4 md:grid-cols-3">
           {tiers.map((t) => (
-            <li key={t.name} className="flex flex-col rounded-md border border-line-subtle p-6">
+            <li key={t.name} className="rounded-md border border-line-subtle p-6">
               <p className="text-xl font-semibold leading-7">{t.name}</p>
               <p className="mt-2 text-ink-muted">{t.for}</p>
-              <p className="mt-6 font-display text-6xl leading-none tracking-[0.02em]">{t.amount}</p>
-              <p className="mt-1 text-sm text-ink-muted">thousand HUF per year</p>
             </li>
           ))}
         </ul>
         <p className="mt-4 max-w-3xl text-sm text-ink-muted">
-          Every tier includes the 100,000 HUF annual membership fee. Above that, 100,000 HUF for Professional and
-          300,000 HUF for Institutional members is our suggested, voluntary contribution: the level our plans are built
-          on, and the level we ask committed members to give.
+          Membership comes with an annual fee and a voluntary contribution. We&apos;ll walk you through how it works
+          when we talk.
         </p>
 
         <h3 className="mt-12 text-xl font-semibold leading-7">How joining works</h3>
