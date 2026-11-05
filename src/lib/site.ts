@@ -20,9 +20,12 @@ export const legal = {
   email: "info@hunban.eu",
 };
 
-// Footer documents. TODO(Adam): add the URLs of the privacy notice and the GEP document.
+// Footer documents: pages on the site, with their text in /content as
+// Markdown files. Entries with an empty href are not shown.
+// TODO(Adam): add the GEP document.
 export const documents = [
-  { label: "Privacy notice", href: "" },
+  { label: "Privacy notice", href: "/privacy" },
+  { label: "Member Code of Conduct", href: "/code-of-conduct" },
   { label: "Gender Equality Plan (GEP)", href: "" },
 ];
 

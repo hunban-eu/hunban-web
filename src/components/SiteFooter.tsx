@@ -47,9 +47,9 @@ export default function SiteFooter() {
             ))}
             {docs.map((d) => (
               <li key={d.label}>
-                <a href={d.href} target="_blank" rel="noopener noreferrer" className="hover:text-yellow">
+                <Link href={d.href} className="hover:text-yellow">
                   {d.label}
-                </a>
+                </Link>
               </li>
             ))}
           </ul>
