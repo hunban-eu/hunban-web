@@ -48,7 +48,7 @@ We collect only what we need for the purposes in Section 5. Information about a 
 | --- | --- |
 | A. Members | Identity and contact: name, email, phone, LinkedIn profile; (postal address, mother's name, date and place of birth, to identify members unambiguously in the member register and in applications for state funding or support). Membership: type, start and end dates, seats, fees and contributions paid, formal and informal roles in HunBAN, event participation. Billing: billing entity, address, VAT number, invoice email, payment records. Investor profile: current role and organisation, sector focus, preferred stage, typical ticket size, investment experience, mentoring interests, languages, city and country. Event and communication preferences, and anything else you choose to share for matchmaking. |
 | B. Prospective members | Contact details and the answers in the interest form: background, investment interests, experience and expected involvement. Our notes from the onboarding conversation. |
-| C. Founders and applicants | Contact person's name, role, email, phone and LinkedIn profile; founders' names. Company information: name, one-liner, year founded, incorporation status and country, HQ city, industry, business type, stage, revenue band, prototype status, target customers, funding ask. Uploaded materials: pitch deck, one-pager and links. Declarations: privacy notice acknowledgement, acknowledgement of sharing with HunBAN members, recording notice, confirmation that the people named in the materials were informed, accuracy declaration, pitching language and availability. Evaluation data: screening notes, evaluation call notes, investor feedback, pipeline stage, introductions made, event participation and, where known, investment outcome. Correspondence with us. |
+| C. Founders and applicants | Contact person's name, role, email, phone and LinkedIn profile; founders' names. Company information: name, one-liner, year founded, incorporation status and country, HQ city, industry, business type, stage, revenue band, prototype status, target customers, funding ask. Uploaded materials: pitch deck, one-pager and links. Declarations: privacy notice acknowledgement, acknowledgement of sharing with HunBAN members, recording notice, confirmation that the people named in the materials were informed, accuracy declaration, pitching language and availability. Evaluation data: screening notes, evaluation call notes, recordings and transcripts of intro and evaluation calls, investor feedback, pipeline stage, introductions made, event participation and, where known, investment outcome. Correspondence with us. |
 | D. People named in materials | Whatever the founder includes: typically name, role, photo, professional background, shareholding and sometimes contact details. |
 | E. Network contacts | Name, organisation, role, contact details, LinkedIn profile, areas of expertise or investment interest, and a log of our introductions and interactions. |
 | F. Event participants and speakers | Name, email, organisation, role, ticket type and attendance (usually collected through Luma or a co-organiser), questions and feedback, survey (NPS) answers. Photos, video and voice recordings (Section 12). For speakers: bio and portrait. |
@@ -83,6 +83,7 @@ We name the legal basis we rely on for each purpose. Where we rely on legitimate
 | 17 | Website operation, security and anonymous visitor statistics (Vercel Web Analytics) | H | Legitimate interest (Art. 6(1)(f)); the site sets no cookies (Section 13) |
 | 18 | Establishing, exercising or defending legal claims; preventing misuse of the network | All | Legitimate interest (Art. 6(1)(f)) |
 | 19 | Publishing profiles of members, founders and partners, and testimonials, on hunban.eu | A, C, E, I | Consent (Art. 6(1)(a)) |
+| 20 | Recording and transcribing intro and evaluation calls, so our notes are accurate | C | Legitimate interest (Art. 6(1)(f)); we tell you at the start of the call and don't record if you ask us not to |
 
 You can withdraw a consent as easily as you gave it. Withdrawal does not affect processing that happened before. If you don't provide data marked as required in a form, we may not be able to review your application or provide the service.
 
@@ -92,7 +93,7 @@ Access to your application widens step by step, and only as you move forward in 
 
 1. **Submission.** You apply through our online form. Your answers and files go straight into our CRM. Only HunBAN staff can see them at this stage.
 2. **Completeness and fit check.** The HunBAN team checks that the application is complete and fits our criteria (for example a connection to Hungary and an angel-sized round). Where we need specialist input, we may consult an individual expert from our network, for example on a technology, market or regulatory question. We share only what the question needs, and ask the expert to keep it confidential. Every complete application gets a response.
-3. **Evaluation call.** If you pass, we invite you to a short call. Our notes are stored with your application.
+3. **Evaluation call.** If you pass, we invite you to a short call. We may record and transcribe it with Fathom so our notes are accurate; we tell you at the start, and we don't record if you ask us not to. Our notes, and any recording and transcript, are stored with your application.
 4. **Investor review.** Shortlisted startups are reviewed by HunBAN's board, who are themselves angel investors. We may also show your profile to individual members whose stated interests match yours.
 5. **Exposure to the membership.** If you are invited to pitch at Startup Arena, a Founder Q&A session or our internal deal flow platform, your profile and deck become available to all HunBAN members and non-member investors in the network. Startup Arena is a public event and pitches may be recorded or streamed (Section 12).
 6. **Introductions.** We make warm introductions to specific members, mentors or partners. Anyone outside the HunBAN membership gets your materials only with your prior agreement.
@@ -139,6 +140,7 @@ We never sell or rent personal data. Data leaves HunBAN only in the cases below.
 | GoDaddy | Domain name and DNS for hunban.eu | USA. GoDaddy.com, LLC is certified under the EU-US Data Privacy Framework |
 | Accounting firm and invoicing software (Aurum Accounting and Quick software) | Bookkeeping, invoices | Hungary |
 | Vercel | Hosting hunban.eu, server logs, anonymous visitor statistics | USA; Vercel is certified under the EU-US Data Privacy Framework |
+| Fathom | Recording, transcription and AI summaries of video calls | USA; Fathom is certified under the EU-US Data Privacy Framework, with Standard Contractual Clauses as a fallback |
 | Supabase | Website database (events, public profiles, testimonials) and document storage | EU (Frankfurt) |
 
 **Independent recipients.** These parties decide for themselves how to use what they receive, under their own privacy notices:
@@ -172,6 +174,7 @@ When a period ends, we delete the data or anonymise it so it can only feed stati
 | Invoices and accounting records | At least 8 years | Act C of 2000 on Accounting, Section 169(2), a minimum period |
 | Membership applications not accepted (B) | 1 year after the decision | Handling questions or a reapplication |
 | Startup applications, declined or inactive (C, D) | 3 years after the last contact, then company name and outcome kept anonymised for statistics | Reconnecting when the startup's stage fits; typical early-stage cycle |
+| Call recordings and transcripts (C) | Kept with the application file and deleted with it | Accurate evaluation notes |
 | Startups that raised from HunBAN members (C, D) | For the duration of the relationship plus 5 years | Portfolio follow-up, limitation period |
 | Investor profiles for matchmaking (A, E) | Until consent is withdrawn or membership ends | Consent |
 | Network contacts (E) | 3 years after the last interaction | Keeping the community database current |
@@ -198,7 +201,7 @@ When a period ends, we delete the data or anonymise it so it can only feed stati
 
 **No automated decisions.** We make no decisions with legal or similarly significant effects based solely on automated processing, including profiling (GDPR Art. 22). Matchmaking suggestions are made and checked by people.
 
-**AI-assisted tools.** We use Claude Pro by Anthropic to help summarise applications, sort email and draft replies. A HunBAN team member reviews every output and takes every decision. We keep Claude's model training setting switched off, so our chats are not used to train Anthropic's models.
+**AI-assisted tools.** We use Claude Pro by Anthropic to help summarise applications, sort email and draft replies, and Fathom to record, transcribe and summarise calls (Section 6). A HunBAN team member reviews every output and takes every decision. We keep Claude's model training setting switched off, so our chats are not used to train Anthropic's models.
 
 ## 12. Photos, recordings and streaming at events
 
