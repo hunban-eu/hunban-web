@@ -2,7 +2,7 @@ import Link from "next/link";
 import { documents, legal, nav, social } from "@/lib/site";
 
 export default function SiteFooter() {
-  const docs = documents.filter((d) => d.href);
+  const docs = documents.filter((d) => d.path && d.file);
   const links = social.filter((s) => s.href);
 
   return (
@@ -47,7 +47,7 @@ export default function SiteFooter() {
             ))}
             {docs.map((d) => (
               <li key={d.label}>
-                <a href={d.href} target="_blank" rel="noopener noreferrer" className="hover:text-yellow">
+                <a href={d.path} target="_blank" rel="noopener noreferrer" className="hover:text-yellow">
                   {d.label}
                 </a>
               </li>

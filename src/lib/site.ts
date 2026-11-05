@@ -20,22 +20,27 @@ export const legal = {
   email: "info@hunban.eu",
 };
 
-// Footer documents, stored in the public "docs" bucket on Supabase.
-// To update a document, upload the new PDF there under the same file name.
-// Links with an empty href are not shown. TODO(Adam): add the URL of the GEP document.
-const docsBucket =
+// Footer documents. Each has a short address on the site (hunban.eu/privacy),
+// which forwards to the current PDF in the public "docs" bucket on Supabase.
+// Forms and emails always use the short address, so a new version only needs
+// a new upload: under the same file name nothing changes, under a new file
+// name only "file" changes here. The forwarding rules live in next.config.ts.
+// Entries with an empty path are not shown. TODO(Adam): add the GEP document.
+export const docsBucket =
   "https://cnxdwkqgydlivbrokoim.supabase.co/storage/v1/object/public/docs";
 
 export const documents = [
   {
     label: "Privacy notice",
-    href: `${docsBucket}/HunBAN%20Privacy%20Notice%20effective%20from%2005.11.2026.pdf`,
+    path: "/privacy",
+    file: "HunBAN Privacy Notice effective from 05.11.2026.pdf",
   },
   {
     label: "Member Code of Conduct",
-    href: `${docsBucket}/HunBAN%20Member%20Code%20of%20Conduct.pdf`,
+    path: "/code-of-conduct",
+    file: "HunBAN Member Code of Conduct.pdf",
   },
-  { label: "Gender Equality Plan (GEP)", href: "" },
+  { label: "Gender Equality Plan (GEP)", path: "", file: "" },
 ];
 
 // Social profiles. Links with an empty href are not shown.
