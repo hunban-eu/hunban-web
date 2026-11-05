@@ -69,7 +69,7 @@ We name the legal basis we rely on for each purpose. Where we rely on legitimate
 | 3 | Reviewing membership applications | B | Steps taken at your request before membership (Art. 6(1)(b)) |
 | 4 | Investor profiling for matchmaking with startups | A, E | Consent (Art. 6(1)(a)) |
 | 5 | Receiving, screening and evaluating startup applications, including evaluation calls | C | Legitimate interest (Art. 6(1)(f)): running the deal flow you asked to enter |
-| 6 | Sharing your startup profile and materials with the HunBAN board and members | C, D | Legitimate interest (Art. 6(1)(f)), and only after you tick "Sharing with the network" |
+| 6 | Sharing your startup profile and materials with the HunBAN board and members | C, D | Legitimate interest (Art. 6(1)(f)): sharing with members is part of the process you apply for |
 | 7 | Introductions outside the membership: non-member investors, partner angel networks (for example EBAN members), consortium partners | C, D | Consent (Art. 6(1)(a)), asked case by case |
 | 8 | Assessing the team behind a startup from names and profiles in its materials | D | Legitimate interest (Art. 6(1)(f)) of HunBAN, the founders and investors in evaluating the team |
 | 9 | Follow-up, warm intros, mentoring, tracking how founders and portfolio companies progress | C, E | Legitimate interest (Art. 6(1)(f)) |
@@ -93,7 +93,7 @@ Access to your application widens step by step, and only as you move forward in 
 1. **Submission.** You apply through our online form. Your answers and files go straight into our CRM. Only HunBAN staff can see them at this stage.
 2. **Completeness and fit check.** The HunBAN team checks that the application is complete and fits our criteria (for example a connection to Hungary and an angel-sized round). Where we need specialist input, we may consult an individual expert from our network, for example on a technology, market or regulatory question. We share only what the question needs, and ask the expert to keep it confidential. Every complete application gets a response.
 3. **Evaluation call.** If you pass, we invite you to a short call. Our notes are stored with your application.
-4. **Investor review.** Shortlisted startups are reviewed by HunBAN's board, who are themselves angel investors. If you ticked "Sharing with the network", we may also show your profile to individual members whose stated interests match yours.
+4. **Investor review.** Shortlisted startups are reviewed by HunBAN's board, who are themselves angel investors. We may also show your profile to individual members whose stated interests match yours.
 5. **Exposure to the membership.** If you are invited to pitch at Startup Arena, a Founder Q&A session or our internal deal flow platform, your profile and deck become available to all HunBAN members and non-member investors in the network. Startup Arena is a public event and pitches may be recorded or streamed (Section 12).
 6. **Introductions.** We make warm introductions to specific members, mentors or partners. Anyone outside the HunBAN membership gets your materials only with your prior agreement.
 7. **Parked or declined.** We keep your file for the period in Section 10 so we can reconnect when your stage fits better. You can ask us to delete it at any time.
@@ -110,7 +110,7 @@ HunBAN and its members handle what you submit in your startup's interest. Forwar
 | --- | --- | --- |
 | HunBAN staff | From submission | Their employment or service contract |
 | HunBAN board | From the investor review step | The HunBAN Member Code of Conduct |
-| HunBAN members | After you opt in to sharing with the network, or accept an invitation to pitch | The HunBAN Member Code of Conduct |
+| HunBAN members | From the investor review step, or when you accept an invitation to pitch | The HunBAN Member Code of Conduct |
 | Experts we consult during evaluation | Only with your knowledge | Asked to keep it confidential |
 | Investors and partners outside HunBAN | Only with your agreement | Their own terms |
 
