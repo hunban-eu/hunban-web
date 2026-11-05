@@ -26,6 +26,13 @@ export const metadata: Metadata = {
     "The home of angel investing in Hungary. A trusted circle of investors and a curated network of founders, investors and ecosystem enablers.",
   // Full addresses in link previews and search results use the live domain.
   metadataBase: new URL("https://hunban.eu"),
+  // How links to the site look when shared (the image is src/app/opengraph-image.tsx).
+  openGraph: {
+    siteName: "HunBAN",
+    locale: "en_GB",
+    type: "website",
+  },
+  twitter: { card: "summary_large_image" },
 };
 
 export default function RootLayout({
