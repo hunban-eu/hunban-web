@@ -179,7 +179,7 @@ export default async function Home() {
       <section className="mx-auto max-w-6xl px-4 py-12 sm:px-8 sm:py-16">
         <div className="grid gap-10 lg:grid-cols-[3fr_2fr]">
           <div>
-            <h2 className={h2}>Coming up</h2>
+            <h2 className={h2}>Coming up in the ecosystem</h2>
             {nextEvents.length === 0 ? (
               <p className="mt-6 text-ink-muted">No upcoming events right now. Check back soon.</p>
             ) : (
@@ -219,6 +219,11 @@ export default async function Home() {
                             {weekday.format(start)}, {time.format(start)}
                             {e.venue && <>, {e.venue}</>}
                           </span>
+                          {e.organiser && !e.is_hunban && (
+                            <span className="mt-1 block text-[13px] leading-[18px] text-ink-muted">
+                              Organised by {e.organiser}
+                            </span>
+                          )}
                         </span>
                       </Card>
                     </li>
