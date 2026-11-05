@@ -20,9 +20,21 @@ export const legal = {
   email: "info@hunban.eu",
 };
 
-// Footer documents. TODO(Adam): add the URLs of the privacy notice and the GEP document.
+// Footer documents, stored in the public "docs" bucket on Supabase.
+// To update a document, upload the new PDF there under the same file name.
+// Links with an empty href are not shown. TODO(Adam): add the URL of the GEP document.
+const docsBucket =
+  "https://cnxdwkqgydlivbrokoim.supabase.co/storage/v1/object/public/docs";
+
 export const documents = [
-  { label: "Privacy notice", href: "" },
+  {
+    label: "Privacy notice",
+    href: `${docsBucket}/HunBAN%20Privacy%20Notice%20effective%20from%2005.11.2026.pdf`,
+  },
+  {
+    label: "Member Code of Conduct",
+    href: `${docsBucket}/HunBAN%20Member%20Code%20of%20Conduct.pdf`,
+  },
   { label: "Gender Equality Plan (GEP)", href: "" },
 ];
 
