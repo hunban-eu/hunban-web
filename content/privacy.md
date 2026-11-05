@@ -129,7 +129,7 @@ HunBAN and its members handle what you submit in your startup's interest. Forwar
 
 We never sell or rent personal data. Data leaves HunBAN only in the cases below.
 
-**Service providers (processors).** They process data only on our instructions, under a data processing agreement.
+**Service providers (processors).** They process data only on our instructions, under a data processing agreement. The exception is Vercel, which hosts hunban.eu on its free plan under its own terms of service and privacy policy.
 
 | Provider | What it does for us | Data location |
 | --- | --- | --- |
@@ -230,7 +230,7 @@ We protect personal data with technical and organisational measures that fit a s
 - access limited to the people who need it, with startup files restricted to staff until the founder agrees to wider sharing
 - two-factor authentication on all HunBAN accounts
 - encrypted connections (HTTPS) and providers with recognised security certifications
-- written data processing agreements with every service provider
+- data processing agreements with our service providers, as described in Section 8
 - a record of processing activities (GDPR Art. 30)
 
 If a personal data breach occurs, we report it to the Hungarian data protection authority (NAIH) without undue delay and, where feasible, within 72 hours of becoming aware of it, unless it is unlikely to put anyone's rights at risk (Art. 33), and inform you without delay if it is likely to put your rights at high risk (Art. 34).
