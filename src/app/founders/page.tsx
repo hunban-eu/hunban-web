@@ -78,6 +78,10 @@ const faq: { q: string; a: string; list?: string[]; after?: string }[] = [
       "A real company, not just an idea",
     ],
   },
+  {
+    q: "Does applying create any obligation?",
+    a: "No. Applying is free and creates no contract on either side. HunBAN decides independently which startups to invite, and may decline or stop considering an application at any time without giving a reason. Your data is handled as described in our privacy notice at hunban.eu/privacy.",
+  },
 ];
 
 // Backed founders and their counter come from the database; refresh at most every 5 minutes.
