@@ -22,9 +22,8 @@ export const metadata: Metadata = {
   },
   description:
     "The home of angel investing in Hungary. A trusted circle of investors and a curated network of founders, investors and ecosystem enablers.",
-  // PRE-LAUNCH: keep search engines away while the site is being built.
-  // Remove this block (and src/app/robots.ts) on launch day.
-  robots: { index: false, follow: false },
+  // Full addresses in link previews and search results use the live domain.
+  metadataBase: new URL("https://hunban.eu"),
 };
 
 export default function RootLayout({

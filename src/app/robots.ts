@@ -1,9 +1,8 @@
 import type { MetadataRoute } from "next";
 
-// PRE-LAUNCH: block all crawlers while the site is being built.
-// On launch day, replace with rules that allow indexing.
+// Search engines may index the whole site.
 export default function robots(): MetadataRoute.Robots {
   return {
-    rules: { userAgent: "*", disallow: "/" },
+    rules: { userAgent: "*", allow: "/" },
   };
 }
