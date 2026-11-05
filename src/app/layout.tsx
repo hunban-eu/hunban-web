@@ -13,6 +13,8 @@ import "@fontsource/bebas-neue/latin-400.css";
 import "@fontsource/bebas-neue/latin-ext-400.css";
 import SiteHeader from "@/components/SiteHeader";
 import SiteFooter from "@/components/SiteFooter";
+// Cookieless visitor statistics (page views only), as described in the privacy notice.
+import { Analytics } from "@vercel/analytics/next";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -43,6 +45,7 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        <Analytics />
       </body>
     </html>
   );
