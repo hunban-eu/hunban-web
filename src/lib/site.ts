@@ -7,6 +7,7 @@ export const nav = [
   { href: "/investors", label: "For investors" },
   { href: "/events", label: "Events" },
   { href: "/map", label: "Ecosystem map" },
+  { href: "/jobs", label: "Jobs" },
 ];
 
 // Legal imprint, required on an organisation's site under Hungarian law.
