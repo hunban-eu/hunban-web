@@ -1,12 +1,12 @@
 # HunBAN Privacy Notice
 
-Version 2.0, effective 5 November 2026.
+Version 2.1, effective 6 November 2026.
 
 ## 1. Introduction and scope
 
 The Hungarian Business Angel Network Association ("HunBAN", "we") processes personal data to run an angel investor association and its wider community of investors, founders, mentors and ecosystem partners. This notice tells you what we collect, why, on what legal basis, who sees it, how long we keep it and what your rights are under the General Data Protection Regulation ((EU) 2016/679, "GDPR") and Hungarian Act CXII of 2011 on Informational Self-Determination and Freedom of Information ("Infotv.").
 
-It covers our website, our membership and startup application forms, our CRM, our events (including Startup Arena and other event formats we are running on our own), our newsletter and every other HunBAN programme. Third-party sites we link to (for example Luma or LinkedIn) have their own privacy policies.
+It covers our website, our membership and startup application forms, our job board, our CRM, our events (including Startup Arena and other event formats we are running on our own), our newsletter and every other HunBAN programme. Third-party sites we link to (for example Luma or LinkedIn) have their own privacy policies.
 
 HunBAN itself does not invest. Our members make their own, independent investment decisions. We facilitate introductions and charge founders no fees at any stage.
 
@@ -26,7 +26,7 @@ We have not appointed a Data Protection Officer, because our core activities do 
 
 ## 3. Who this notice applies to
 
-This notice covers nine groups of people. Sections 4, 5 and 10 refer to them by letter.
+This notice covers ten groups of people. Sections 4, 5 and 10 refer to them by letter.
 
 | Group | Who |
 | --- | --- |
@@ -39,6 +39,7 @@ This notice covers nine groups of people. Sections 4, 5 and 10 refer to them by 
 | G. Newsletter subscribers | Anyone signed up to the HunBAN newsletter |
 | H. Website visitors | Visitors to hunban.eu |
 | I. Partner and supplier contacts | Contact persons at partner organisations, sponsors, venues, grant providers and service providers |
+| J. Job board users | Founders and team members of startups in the HunBAN network whom we give access to post job listings on hunban.eu/jobs |
 
 ## 4. What personal data we process
 
@@ -55,6 +56,9 @@ We collect only what we need for the purposes in Section 5. Information about a 
 | G. Newsletter subscribers | Email address, name if given, subscription status, open and click data. |
 | H. Website visitors | Technical data such as IP address, browser type and access time in server logs, and anonymous page-view statistics (page, referrer, country, device and browser type) from Vercel Web Analytics. |
 | I. Partner and supplier contacts | Name, organisation, role, contact details and correspondence. |
+| J. Job board users | Email address, the startup you post for, the listings you publish (position, employment type, work mode, city, short description, application link, publication and refresh dates), the dates our reminder emails were sent, and technical login records (time of login, IP address, browser) kept by our login provider. |
+
+**Job applicants.** The job board only links to the startup's own application page. HunBAN does not receive, see or store anything about people who apply for a job; the startup is responsible for that data under its own privacy notice.
 
 Please do not send us special categories of data (health, religion, political opinions and the like), ID card or passport numbers, or bank card details. We do not need them for any purpose in this notice and will delete them if received.
 
@@ -84,6 +88,7 @@ We name the legal basis we rely on for each purpose. Where we rely on legitimate
 | 18 | Establishing, exercising or defending legal claims; preventing misuse of the network | All | Legitimate interest (Art. 6(1)(f)) |
 | 19 | Publishing profiles of members, founders and partners, and testimonials, on hunban.eu | A, C, E, I | Consent (Art. 6(1)(a)) |
 | 20 | Recording and transcribing intro and evaluation calls, so our notes are accurate | C | Legitimate interest (Art. 6(1)(f)); we tell you at the start of the call and don't record if you ask us not to |
+| 21 | Running the job board: login by emailed link, publishing your startup's listings, and reminding you by email before a listing expires | J | Legitimate interest (Art. 6(1)(f)): running a free service for startups in our network that you asked to use; using the job board creates no contract |
 
 You can withdraw a consent as easily as you gave it. Withdrawal does not affect processing that happened before. If you don't provide data marked as required in a form, we may not be able to review your application or provide the service.
 
@@ -135,13 +140,13 @@ We never sell or rent personal data. Data leaves HunBAN only in the cases below.
 | --- | --- | --- |
 | ClickUp | CRM, startup application forms, file storage | USA; EU-only hosting is offered on the Enterprise plan. Transfers: Standard Contractual Clauses in ClickUp's Data Processing Addendum (ClickUp's DPF listing is inactive) |
 | Google Workspace | Email, calendar, documents | EU and USA. Transfers: EU-US Data Privacy Framework and SCCs in Google's |
-| Brevo | Newsletter | EU (France, Germany, Belgium); no transfer outside the EU for core storage |
+| Brevo | Newsletter; job board login and reminder emails | EU (France, Germany, Belgium); no transfer outside the EU for core storage |
 | Luma | Event registration and ticketing | USA, no EU data residency option. Transfers: Standard Contractual Clauses in Luma's DPA |
 | GoDaddy | Domain name and DNS for hunban.eu | USA. GoDaddy.com, LLC is certified under the EU-US Data Privacy Framework |
 | Accounting firm and invoicing software (Aurum Accounting and Quick software) | Bookkeeping, invoices | Hungary |
 | Vercel | Hosting hunban.eu, server logs, anonymous visitor statistics | USA; Vercel is certified under the EU-US Data Privacy Framework |
 | Fathom | Recording, transcription and AI summaries of video calls | USA; Fathom is certified under the EU-US Data Privacy Framework, with Standard Contractual Clauses as a fallback |
-| Supabase | Website database (events, public profiles, testimonials) and document storage | EU (Frankfurt) |
+| Supabase | Website database (events, public profiles, testimonials, job listings), job board logins, and document storage | EU (Frankfurt) |
 
 **Independent recipients.** These parties decide for themselves how to use what they receive, under their own privacy notices:
 
@@ -187,6 +192,9 @@ When a period ends, we delete the data or anonymise it so it can only feed stati
 | Website server logs (H) | As set by our hosting provider, typically up to 30 days | Security |
 | Website visitor statistics (H) | Aggregated statistics only; the visitor hash is discarded after 24 hours | Legitimate interest |
 | Public profiles and testimonials | Until you ask us to remove them, or your membership or cooperation with HunBAN ends | Consent |
+| Job board user accounts (J) | Until you ask us to remove your access, or your startup leaves the job board | Legitimate interest |
+| Job listings (J) | Shown publicly for 15 days after publishing or refreshing, then hidden; hidden listings are deleted 3 months after they were last refreshed, or earlier at your request | Legitimate interest |
+| Job board login records (J) | As set by our login provider (Supabase), typically a few days | Security |
 
 ## 11. Where data comes from, automated decisions and AI tools
 
@@ -215,7 +223,7 @@ Removing content already shared by third parties on their own channels may be ou
 
 ## 13. Website, cookies and newsletter
 
-**Website.** hunban.eu sets no cookies, so there is no cookie banner. We use Vercel Web Analytics to count page views: it works without cookies, identifies visits only by a temporary hash that is discarded after 24 hours, and gives us aggregated statistics, not individual profiles. Our hosting provider, Vercel, keeps basic technical server logs for security.
+**Website.** The public pages of hunban.eu set no cookies, so there is no cookie banner. The only exception is the job board login: when a job board user logs in, we set a strictly necessary session cookie that keeps them logged in to their dashboard. It is set only on the job board's login and dashboard pages, is used for nothing else, and is deleted when they log out. We use Vercel Web Analytics to count page views: it works without cookies, identifies visits only by a temporary hash that is discarded after 24 hours, and gives us aggregated statistics, not individual profiles. Our hosting provider, Vercel, keeps basic technical server logs for security.
 
 **Public profiles and testimonials.** hunban.eu shows members, founders we support and partners, with name, photo, role, organisation and LinkedIn link, and quotes from founders and investors. We publish these only with the person's consent, and remove them on request to info@hunban.eu.
 
@@ -255,4 +263,4 @@ Email info@hunban.eu to use any of these rights. It is free. We may ask you to c
 
 We review this notice at least once a year and whenever our processing changes. We announce material changes on hunban.eu and by email to members and to founders with an active application. Earlier versions are available on request.
 
-Version 2.0. Effective date: 5 November 2026. Replaces the version effective 1 January 2026. This notice is published in English.
+Version 2.1. Effective date: 6 November 2026. Adds the job board (Group J, purpose 21). Replaces version 2.0, effective 5 November 2026. This notice is published in English.
