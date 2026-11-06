@@ -81,7 +81,9 @@ export default async function DashboardPage() {
     <p className="mt-4 max-w-2xl text-sm text-ink-muted">
       New listings go live on the public jobs page straight away and stay up for {LISTING_DAYS} days. On day{" "}
       {REMINDER_DAY} we email you a reminder: press Refresh to keep a role up for another {LISTING_DAYS} days.
-      Hidden listings stay here, so you can bring them back with Reactivate.
+      Hidden listings stay here for 3 months, so you can bring them back with Reactivate. Using the job board
+      is free and creates no contract; we trust your common sense, and remove listings or access if we see
+      misuse.
     </p>
   );
 

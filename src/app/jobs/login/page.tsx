@@ -37,7 +37,11 @@ export default async function JobsLoginPage({
       <div className="mt-8">
         <LoginForm initialError={error ? errors[error] : undefined} />
       </div>
-      <p className="mt-10 text-sm text-ink-muted">
+      <p className="mt-10 max-w-xl text-sm text-ink-muted">
+        Using the job board is free and creates no contract. We trust you to use common sense: post real, open
+        roles at your own startup. If we see misuse, we remove the listing or the access.
+      </p>
+      <p className="mt-4 text-sm text-ink-muted">
         Not registered yet? Write to{" "}
         <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
           info@hunban.eu
