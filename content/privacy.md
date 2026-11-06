@@ -1,6 +1,6 @@
 # HunBAN Privacy Notice
 
-Version 2.1, effective 15 November 2026.
+Version 2.1, effective 6 November 2026.
 
 ## 1. Introduction and scope
 
@@ -263,4 +263,4 @@ Email info@hunban.eu to use any of these rights. It is free. We may ask you to c
 
 We review this notice at least once a year and whenever our processing changes. We announce material changes on hunban.eu and by email to members and to founders with an active application. Earlier versions are available on request.
 
-Version 2.1. Effective date: 15 November 2026. Adds the job board (Group J, purpose 21). Replaces version 2.0, effective 5 November 2026. This notice is published in English.
+Version 2.1. Effective date: 6 November 2026. Adds the job board (Group J, purpose 21). Replaces version 2.0, effective 5 November 2026. This notice is published in English.

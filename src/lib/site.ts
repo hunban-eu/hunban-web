@@ -7,7 +7,7 @@ export const nav = [
   { href: "/investors", label: "For investors" },
   { href: "/events", label: "Events" },
   { href: "/map", label: "Ecosystem map" },
-  { href: "/jobs", label: "Jobs" },
+  // { href: "/jobs", label: "Jobs" }, // job board: soft launch, add back when announced (15 Nov 2026)
 ];
 
 // Legal imprint, required on an organisation's site under Hungarian law.
