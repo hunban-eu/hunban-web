@@ -74,13 +74,13 @@ export default async function JobsPage() {
 
         <p className="mt-14 text-sm text-ink-muted">
           Hiring at a startup in the HunBAN network?{" "}
-          <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
-            Ask us for access
-          </a>{" "}
-          or{" "}
           <Link href="/jobs/dashboard" className="font-semibold text-ink underline underline-offset-4">
-            post or manage your roles
+            Post or manage your roles
           </Link>
+          , or if you don&apos;t have access yet,{" "}
+          <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
+            write to us
+          </a>
           .
         </p>
       </section>
