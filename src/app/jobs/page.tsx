@@ -77,7 +77,7 @@ export default async function JobsPage() {
           <Link href="/jobs/dashboard" className="font-semibold text-ink underline underline-offset-4">
             Post or manage your roles
           </Link>
-          , or if you don&apos;t have access yet,{" "}
+          . No access yet? If your startup has raised from HunBAN members, angels or VCs,{" "}
           <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
             write to us
           </a>

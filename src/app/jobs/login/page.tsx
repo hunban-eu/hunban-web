@@ -42,11 +42,12 @@ export default async function JobsLoginPage({
         roles at your own startup. If we see misuse, we remove the listing or the access.
       </p>
       <p className="mt-4 text-sm text-ink-muted">
-        Not registered yet? Write to{" "}
+        Not registered yet? The job board is for startups that have raised from HunBAN members, angels or VCs.
+        If that&apos;s you, write to{" "}
         <a href="mailto:info@hunban.eu" className="font-semibold text-ink underline underline-offset-4">
           info@hunban.eu
-        </a>
-        .
+        </a>{" "}
+        and we&apos;ll set you up.
       </p>
     </section>
   );
