@@ -78,8 +78,8 @@ export default async function JobsPage() {
             Ask us for access
           </a>{" "}
           or{" "}
-          <Link href="/jobs/login" className="font-semibold text-ink underline underline-offset-4">
-            log in to post a role
+          <Link href="/jobs/dashboard" className="font-semibold text-ink underline underline-offset-4">
+            post or manage your roles
           </Link>
           .
         </p>

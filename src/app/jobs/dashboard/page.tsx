@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { redirect } from "next/navigation";
 import { createAuthSupabase } from "@/lib/supabase-auth";
 import { LISTING_DAYS, REMINDER_DAY, isLive, type Listing } from "@/lib/jobs";
@@ -44,9 +43,9 @@ export default async function DashboardPage() {
         <p className="mt-2 text-sm text-ink-muted">Logged in as {user.email}</p>
       </div>
       <div className="flex gap-4 text-sm font-semibold">
-        <Link href="/jobs" className="underline underline-offset-4">
-          View public page
-        </Link>
+        <a href="/jobs" target="_blank" rel="noopener" className="underline underline-offset-4">
+          View public page <span aria-hidden="true">↗</span>
+        </a>
         <form action={signOut}>
           <button type="submit" className="underline underline-offset-4">
             Log out
