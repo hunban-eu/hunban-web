@@ -1,7 +1,7 @@
 "use client";
 
-import { useState } from "react";
-import { daysLeft, employmentTypes, expiresAt, formatDate, isLive, labelOf, workModes, type Listing } from "@/lib/jobs";
+import { useState, useTransition } from "react";
+import { LISTING_DAYS, daysLeft, employmentTypes, expiresAt, formatDate, isLive, labelOf, workModes, type Listing } from "@/lib/jobs";
 import { deleteListing, refreshListing } from "./actions";
 import ListingForm from "./ListingForm";
 
@@ -10,6 +10,18 @@ const btn = "rounded-sm border border-line px-3 py-1.5 text-sm font-semibold hov
 export default function ListingCard({ listing: l }: { listing: Listing }) {
   const [editing, setEditing] = useState(false);
   const [confirmDelete, setConfirmDelete] = useState(false);
+  const [refreshing, startRefresh] = useTransition();
+  const [refreshed, setRefreshed] = useState(false);
+
+  // Refresh / Reactivate with visible feedback: the button shows progress,
+  // then a short "done" note, because the dates often look the same after it.
+  function refresh(formData: FormData) {
+    startRefresh(async () => {
+      await refreshListing(formData);
+      setRefreshed(true);
+      setTimeout(() => setRefreshed(false), 4000);
+    });
+  }
   const live = isLive(l.refreshed_at);
   const left = daysLeft(l.refreshed_at);
 
@@ -38,13 +50,14 @@ export default function ListingCard({ listing: l }: { listing: Listing }) {
         </div>
 
         <div className="flex shrink-0 flex-wrap gap-2">
-          <form action={refreshListing}>
+          <form action={refresh}>
             <input type="hidden" name="id" value={l.id} />
             <button
               type="submit"
-              className={live ? btn : "rounded-sm bg-accent px-3 py-1.5 text-sm font-semibold text-on-accent"}
+              disabled={refreshing}
+              className={`${live ? btn : "rounded-sm bg-accent px-3 py-1.5 text-sm font-semibold text-on-accent"} disabled:opacity-60`}
             >
-              {live ? "Refresh" : "Reactivate"}
+              {refreshing ? (live ? "Refreshing..." : "Reactivating...") : live ? "Refresh" : "Reactivate"}
             </button>
           </form>
           <button type="button" className={btn} onClick={() => setEditing((v) => !v)} aria-expanded={editing}>
@@ -67,6 +80,12 @@ export default function ListingCard({ listing: l }: { listing: Listing }) {
           )}
         </div>
       </div>
+
+      {refreshed && (
+        <p role="status" className="mt-3 text-sm font-semibold">
+          Done. Live for {LISTING_DAYS} days from now, until {formatDate(expiresAt(l.refreshed_at))}.
+        </p>
+      )}
 
       {editing && (
         <div className="mt-6 border-t border-line-subtle pt-6">
