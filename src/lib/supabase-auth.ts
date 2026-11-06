@@ -1,5 +1,6 @@
 import { createServerClient } from "@supabase/ssr";
 import { cookies } from "next/headers";
+import { LOGIN_HOURS } from "@/lib/jobs";
 
 // Logged-in connection for the job board dashboard.
 //
@@ -15,6 +16,8 @@ export async function createAuthSupabase() {
   if (!url || !key) throw new Error("Supabase is not configured.");
 
   return createServerClient(url, key, {
+    // Login cookies expire after 8 hours (see also src/proxy.ts).
+    cookieOptions: { maxAge: LOGIN_HOURS * 60 * 60 },
     cookies: {
       getAll() {
         return cookieStore.getAll();

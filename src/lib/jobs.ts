@@ -4,6 +4,7 @@ import { getSupabase } from "@/lib/supabase";
 
 export const LISTING_DAYS = 15; // a listing is live this many days after publish/refresh
 export const REMINDER_DAY = 13; // reminder email goes out on this day
+export const LOGIN_HOURS = 8; // a job board login lasts at most this long, then a new link is needed
 
 export const employmentTypes = [
   { value: "full-time", label: "Full-time" },
