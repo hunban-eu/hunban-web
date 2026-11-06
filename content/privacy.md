@@ -1,6 +1,6 @@
 # HunBAN Privacy Notice
 
-Version 2.1, effective [LAUNCH DATE].
+Version 2.1, effective 15 November 2026.
 
 ## 1. Introduction and scope
 
@@ -88,7 +88,7 @@ We name the legal basis we rely on for each purpose. Where we rely on legitimate
 | 18 | Establishing, exercising or defending legal claims; preventing misuse of the network | All | Legitimate interest (Art. 6(1)(f)) |
 | 19 | Publishing profiles of members, founders and partners, and testimonials, on hunban.eu | A, C, E, I | Consent (Art. 6(1)(a)) |
 | 20 | Recording and transcribing intro and evaluation calls, so our notes are accurate | C | Legitimate interest (Art. 6(1)(f)); we tell you at the start of the call and don't record if you ask us not to |
-| 21 | Running the job board: login by emailed link, publishing your startup's listings, and reminding you by email before a listing expires | J | Contract (Art. 6(1)(b)): providing the service you asked us for |
+| 21 | Running the job board: login by emailed link, publishing your startup's listings, and reminding you by email before a listing expires | J | Legitimate interest (Art. 6(1)(f)): running a free service for startups in our network that you asked to use; using the job board creates no contract |
 
 You can withdraw a consent as easily as you gave it. Withdrawal does not affect processing that happened before. If you don't provide data marked as required in a form, we may not be able to review your application or provide the service.
 
@@ -192,8 +192,8 @@ When a period ends, we delete the data or anonymise it so it can only feed stati
 | Website server logs (H) | As set by our hosting provider, typically up to 30 days | Security |
 | Website visitor statistics (H) | Aggregated statistics only; the visitor hash is discarded after 24 hours | Legitimate interest |
 | Public profiles and testimonials | Until you ask us to remove them, or your membership or cooperation with HunBAN ends | Consent |
-| Job board user accounts (J) | Until you ask us to remove your access, or your startup leaves the job board | Contract |
-| Job listings (J) | Shown publicly for 15 days after publishing or refreshing, then hidden; hidden listings are deleted 12 months after they were last refreshed, or earlier at your request | Contract |
+| Job board user accounts (J) | Until you ask us to remove your access, or your startup leaves the job board | Legitimate interest |
+| Job listings (J) | Shown publicly for 15 days after publishing or refreshing, then hidden; hidden listings are deleted 3 months after they were last refreshed, or earlier at your request | Legitimate interest |
 | Job board login records (J) | As set by our login provider (Supabase), typically a few days | Security |
 
 ## 11. Where data comes from, automated decisions and AI tools
@@ -263,4 +263,4 @@ Email info@hunban.eu to use any of these rights. It is free. We may ask you to c
 
 We review this notice at least once a year and whenever our processing changes. We announce material changes on hunban.eu and by email to members and to founders with an active application. Earlier versions are available on request.
 
-Version 2.1. Effective date: [LAUNCH DATE]. Adds the job board (Group J, purpose 21). Replaces version 2.0, effective 5 November 2026. This notice is published in English.
+Version 2.1. Effective date: 15 November 2026. Adds the job board (Group J, purpose 21). Replaces version 2.0, effective 5 November 2026. This notice is published in English.
